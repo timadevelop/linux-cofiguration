@@ -1,0 +1,49 @@
+/* Do not remove the @namespace line -- it's required for correct functioning / @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); / set default namespace to XUL */
+
+
+#TabsToolbar { height:22px!important; margin-top:0px!important; margin-bottom:-1px!important; }
+#tabbrowser-tabs { height:22px!important; min-height:22px!important; }
+
+.tab-background-start[selected=true]::after,
+.tab-background-start[selected=true]::before,
+.tab-background-start,
+.tab-background-end,
+.tab-background-end[selected=true]::after,
+.tab-background-end[selected=true]::before {
+	  min-height:20px!important;
+  }
+
+  #toolbar-menubar { height:18px!important; margin-top:-5px!important; margin-bottom:0px!important; }
+  #PersonalToolbar { height:20px!important; margin-top:-16px!important; margin-bottom:1px!important; }
+
+
+  #urlbar { height:15px!important; margin-top:-1px!important; margin-bottom:1px!important; }
+
+
+  #toolbarbutton { height:15px!important; margin-top:-5px!important; margin-bottom:1px!important; }
+  #toolbarbutton { min-height: 12px !important; padding:0; margin: 0;}
+
+  #urlbar-container {margin-top:-10px!important; margin-bottom:0xp!important}
+  #search-container { height:15px!important; margin-top:-12px!important; margin-bottom:1px!important; }
+
+  #urlbar-container #back-button {margin-top:1px!important; margin-bottom:0px!important}
+  #urlbar-container #back-button image {padding:3px 0px !important}
+
+
+  menubar {
+  	display: none!important;
+  }
+  menubar > menu {
+	display: none!important;
+//	height: 1px !important;
+//	max-height: 3px!important;
+//	font-size: 2px;
+  }
+
+  #searchbar{
+	display: none!important;
+  }
+
+  #nav-bar { display: none }
+
+

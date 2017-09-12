@@ -30,7 +30,12 @@ test -s ~/.alias && . ~/.alias || true
 #export PS1="\[$(tput bold)\]\[\033[38;5;216m\]\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;15m\]\[$(tput sgr0)\]\[\033[38;5;216m\]\[$(tput bold)\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;81m\][\w]\[$(tput sgr0)\]\[\033[38;5;208m\]\n\n--->\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
 git_branch() {
-	echo -e "\033[38;5;216m$(git branch 2>/dev/null | grep '^*' | sed s/..//)"
+	result=$(git branch 2>/dev/null | grep '^*' | sed s/..//)
+	if [ -z "$result" ]; then
+		echo -e "\033[38;5;216m   ⤼ ⤽ "
+	else
+		echo -e "\033[38;5;216m$result"
+	fi
 }
 
 wc() {

@@ -43,7 +43,7 @@ cc() {
 prompt() {
     PS1=$(printf "\n%*s\r\033[38;5;208m\]--->\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]" "$(tput cols)" '\033[38;5;216m\]\[$(tput bold)\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput bold)\]\[\033[38;5;81m\][\w\]]')
 
-	PS1='$(printf "\033[38;5;51m%*s\r%s" $(( COLUMNS-1 )) "\w" "$(git_branch)$(cc)\n———► $(wc)")'
+	PS1='$(printf "\033[38;5;51m%*s\r%s" $(( COLUMNS-1 )) "\w" "$(git_branch)$(cc)\n ⇄ $(wc)")'
 }
 PROMPT_COMMAND=prompt
 

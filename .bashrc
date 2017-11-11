@@ -30,12 +30,7 @@ test -s ~/.alias && . ~/.alias || true
 #export PS1="\[$(tput bold)\]\[\033[38;5;216m\]\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;15m\]\[$(tput sgr0)\]\[\033[38;5;216m\]\[$(tput bold)\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;81m\][\w]\[$(tput sgr0)\]\[\033[38;5;208m\]\n\n--->\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
 git_branch() {
-	result=$(git branch 2>/dev/null | grep '^*' | sed s/..//)
-	if [ -z "$result" ]; then
-		echo -e "\033[38;5;216m   ⤼ ⤽ "
-	else
-		echo -e "\033[38;5;216m$result"
-	fi
+	echo -e "\033[38;5;216m$(git branch 2>/dev/null | grep '^*' | sed s/..//)"
 }
 
 wc() {
@@ -48,10 +43,10 @@ cc() {
 prompt() {
     PS1=$(printf "\n%*s\r\033[38;5;208m\]--->\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]" "$(tput cols)" '\033[38;5;216m\]\[$(tput bold)\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput bold)\]\[\033[38;5;81m\][\w\]]')
 
-	PS1='$(printf "\033[38;5;51m%*s\r%s" $(( COLUMNS-1 )) "\w" "$(git_branch)$(cc)\n ⇄ $(wc)")'
+    PS1='$(printf "\033[38;5;51m%*s\r%s" $(( COLUMNS-1 )) "\w" "$(git_branch)$(cc)\n ⇄ $(wc)")'
 }
 PROMPT_COMMAND=prompt
-
+#export PS1='$(cc) ⇄ $(wc) '
 #function _update_ps1() {
 #    PS1="$(~/powerline-shell.py $? 2> /dev/null)"
 #}
@@ -66,4 +61,4 @@ alias chi3='vim ~/.config/i3/config'
 #alias xampp='/opt/lampp/manager-linux-x64.run'
 #alias setgrtlib='export LD_LIBRARY_PATH=/home/vlad/projects/brainhub/stable/s/gestusSDK/externAssets/grt/lib:${LD_LIBRARY_PATH}'
 
-#PATH=$PATH:/home/vlad/.gem/ruby/2.1.0/:/usr/lib64/ruby/gems/2.1.0/
+PATH=$PATH:/home/vlad/.gem/ruby/2.1.0/:/usr/lib64/ruby/gems/2.1.0/

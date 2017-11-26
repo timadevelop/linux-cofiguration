@@ -94,4 +94,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias editconfig="vim ~/.zshrc"
 alias loadconfig="source ~/.zshrc"
-source ~/.tldr.complete

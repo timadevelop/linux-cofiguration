@@ -3,7 +3,7 @@
 ![Result](./result.png)
 
 ## CHANGELOG
-- `tldr`-pages: [cpp-client-repo](https://github.com/tldr-pages/tldr-cpp-client)
+- `tldr`-pages: [bash](https://github.com/pepa65/tldr-bash-client)
 - `geometry` theme for `zsh` : [theme repo](https://github.com/geometry-zsh/geometry)
 - `zsh-async` : [repo](https://github.com/mafredri/zsh-async)
 - `zsh` instead of `bash`

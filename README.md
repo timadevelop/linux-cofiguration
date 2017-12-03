@@ -1,8 +1,9 @@
 # Linux configuration files
 
 ![Result](./result.png)
-
+![transparency](./transparent.png)
 ## CHANGELOG
+- migrating from opensuse Konsole to `urxvt`
 - `tldr`-pages: [bash](https://github.com/pepa65/tldr-bash-client)
 - `geometry` theme for `zsh` : [theme repo](https://github.com/geometry-zsh/geometry)
 - `zsh-async` : [repo](https://github.com/mafredri/zsh-async)

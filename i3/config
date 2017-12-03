@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec urxvt #konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -127,30 +127,30 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+esc exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #bindsym $mod+Shift+e exec ~/lock.sh
-bindsym $mod+Shift+e exec /home/tester/.config/i3/i3lock-fancy/lock -f monospace
+bindsym $mod+Shift+e exec /home/vlad/.config/i3/i3lock-fancy/lock -f monospace
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindsym j resize shrink width 10 px or 10 ppt
+bindsym k resize grow height 10 px or 10 ppt
+bindsym l resize shrink height 10 px or 10 ppt
+bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+bindsym Left resize shrink width 10 px or 10 ppt
+bindsym Down resize grow height 10 px or 10 ppt
+bindsym Up resize shrink height 10 px or 10 ppt
+bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -160,18 +160,18 @@ bindsym $mod+r mode "resize"
 # AA3939 - red
 #
 bar {
-	position bottom # 
-	status_command i3status # use i3status
-	colors {
-		separator #888888
+position bottom # 
+status_command i3status # use i3status
+colors {
+	separator #888888
 #		statusline #ffffff
-		background #424242
-	        #color class       border  back.   text
-	        focused_workspace  #AA3939 #AA3939 #ffffff
-	        active_workspace   #555555 #555555 #ffffff
-	        inactive_workspace #000000 #000000 #888888
-	        urgent_workspace   #2f343a #8e3636 #ffffff
-	}
+	background #424242
+	#color class       border  back.   text
+	focused_workspace  #AA3939 #AA3939 #ffffff
+	active_workspace   #555555 #555555 #ffffff
+	inactive_workspace #000000 #000000 #888888
+	urgent_workspace   #2f343a #8e3636 #ffffff
+}
 }
 
 #colors:                border  backgr. text    indicator
@@ -213,5 +213,26 @@ bindsym XF86AudioPrev exec playerctl previous
 # setting layouts
 exec_always "setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle"
 
-exec_always "xrandr --output HDMI1 --right-of eDP1"
-exec_always "xrandr --output HDMI1 --mode 2560x1080"
+
+#
+# floating windows
+for_window [title="Drop-Down"] floating enable
+for_window [title="Shutter"] floating enable
+for_window [title="Thunar"] floating enable resize shrink height 200px, move down 100px, resize grow width 200px, move left 100px;
+#
+# hide windows
+#
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# # Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+# Show the sup-mail scratchpad window, if any.
+#bindsym $mod+= [title="^Sup ::"] scratchpad show
+#
+#
+# i3-gaps
+#
+for_window [class="^.*"] border pixel 2
+gaps inner 20
+gaps outer 0
+

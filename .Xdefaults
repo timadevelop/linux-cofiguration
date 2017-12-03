@@ -1,0 +1,68 @@
+urxvt*transparent: true
+urxvt*shading: 30
+
+##############
+# Xft settings
+##############
+
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+
+################
+# URXVT settings
+################
+
+URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.loginShell:           true
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+
+#URxvt*tintColor: S_base03
+
+# shading - 0 to 99 darkens, 101 to 200 lightens.
+#   Don't use with tintColor; just use a darker or lighter color instead.
+URxvt*shading: 15
+
+URxvt*saveLines: 12000
+
+# Source Code Pro Linux font
+URxvt*font: xft:Source Code Pro:pixelsize=12
+URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=12
+URxvt*letterSpace: -1
+
+# scrollbar - true (default) or false
+URxvt*scrollBar: false
+##
+## Dark pastels
+##
+##
+URxvt*background: #2C2C2C
+URxvt*foreground: #DCDCCC
+! black
+URxvt.color0  : #3F3F3F
+URxvt.color8  : #709080
+! red
+URxvt.color1  : #705050
+URxvt.color9  : #DCA3A3
+! green
+URxvt.color2  : #60B48A
+URxvt.color10 : #72D5A3
+! yellow
+URxvt.color3  : #DFAF8F
+URxvt.color11 : #F0DFAF
+! blue
+URxvt.color4  : #9AB8D7
+URxvt.color12 : #94BFF3
+! magenta
+URxvt.color5  : #DC8CC3
+URxvt.color13 : #EC93D3
+! cyan
+URxvt.color6  : #8CD0D3
+URxvt.color14 : #93E0E3
+! white
+URxvt.color7  : #DCDCCC
+URxvt.color15 : #FFFFFF

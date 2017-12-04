@@ -159,9 +159,11 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 # AA3939 - red
 #
-bar {
+bar{
+#i3bar_command ./lemonbar/i3_lemonbar.sh
 position bottom # 
 status_command i3status # use i3status
+
 colors {
 	separator #888888
 #		statusline #ffffff
@@ -232,7 +234,7 @@ bindsym $mod+minus scratchpad show
 #
 # i3-gaps
 #
+#smart_gaps on
 for_window [class="^.*"] border pixel 2
-gaps inner 20
+gaps inner 15
 gaps outer 0
-

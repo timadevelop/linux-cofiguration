@@ -1,38 +1,31 @@
-urxvt*transparent: true
-urxvt*shading: 30
-
-##############
-# Xft settings
-##############
-
 Xft.dpi:                    96
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
+# Source Code Pro Linux font
+URxvt*font: xft:Source Code Pro:pixelsize=12
+URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=12
+#URxvt*letterSpace: -1 # break some symbols
+
 ################
 # URXVT settings
 ################
+URxvt.borderless: true
 
-URxvt.depth:                32
-URxvt.geometry:             90x30
+URxvt*.transparent: true
+URxvt*.shading: 20
+#Urxvt*depth: 32
+#Urxvt*background: rgba:0000/0000/0200/c800
+#URxvt.depth:                32
+URxvt.geometry:    90x30
 URxvt.loginShell:           true
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
 
-#URxvt*tintColor: S_base03
-
-# shading - 0 to 99 darkens, 101 to 200 lightens.
-#   Don't use with tintColor; just use a darker or lighter color instead.
-URxvt*shading: 15
 
 URxvt*saveLines: 12000
-
-# Source Code Pro Linux font
-URxvt*font: xft:Source Code Pro:pixelsize=12
-URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=12
-URxvt*letterSpace: -1
 
 # scrollbar - true (default) or false
 URxvt*scrollBar: false
@@ -40,7 +33,7 @@ URxvt*scrollBar: false
 ## Dark pastels
 ##
 ##
-URxvt*background: #2C2C2C
+#URxvt*background: #2C2C2C
 URxvt*foreground: #DCDCCC
 ! black
 URxvt.color0  : #3F3F3F
@@ -66,3 +59,5 @@ URxvt.color14 : #93E0E3
 ! white
 URxvt.color7  : #DCDCCC
 URxvt.color15 : #FFFFFF
+
+

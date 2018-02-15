@@ -4,6 +4,7 @@
 ![transparency](./transparent.png)
 ## CHANGELOG
 - migrating from opensuse Konsole to `urxvt`
+- `vim` - use [haskell-vim-now](https://github.com/begriffs/haskell-vim-now) + additional keymaps
 - `tldr`-pages: [bash](https://github.com/pepa65/tldr-bash-client)
 - `geometry` theme for `zsh` : [theme repo](https://github.com/geometry-zsh/geometry)
 - `zsh-async` : [repo](https://github.com/mafredri/zsh-async)

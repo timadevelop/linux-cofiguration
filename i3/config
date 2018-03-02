@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt -e /bin/zsh #konsole
+bindsym $mod+Return exec konsole #urxvt -e /bin/zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -125,7 +125,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+esc exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+o exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #bindsym $mod+Shift+e exec ~/lock.sh
 bindsym $mod+Shift+e exec /home/vlad/.config/i3/i3lock-fancy/lock -f monospace
 
@@ -160,6 +160,12 @@ bindsym $mod+r mode "resize"
 # AA3939 - red
 #
 bar{
+#mode hide
+#hidden_state hide
+#modifier $mod
+
+#workspace_buttons no
+
 #i3bar_command ./lemonbar/i3_lemonbar.sh
 position bottom # 
 status_command i3status # use i3status
@@ -215,7 +221,6 @@ bindsym XF86AudioPrev exec playerctl previous
 # setting layouts
 exec_always "setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle"
 
-
 #
 # floating windows
 for_window [title="Drop-Down"] floating enable
@@ -235,6 +240,14 @@ bindsym $mod+minus scratchpad show
 # i3-gaps
 #
 #smart_gaps on
-for_window [class="^.*"] border pixel 2
-gaps inner 15
+new_window none
+
+#for_window [class="^.*"] border pixel 0
+gaps inner 20
 gaps outer 0
+
+
+# Compton
+exec_always --no-startup-id "killall -q compton; compton --config ~/.config/i3/compton.conf"
+
+

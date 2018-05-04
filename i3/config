@@ -166,19 +166,31 @@ bar{
 
 #workspace_buttons no
 
+i3bar_command i3bar -t
 #i3bar_command ./lemonbar/i3_lemonbar.sh
 position bottom # 
 status_command i3status # use i3status
-
+# height 30
 colors {
 	separator #888888
 #		statusline #ffffff
-	background #424242
+	background #42424290 # 80
 	#color class       border  back.   text
-	focused_workspace  #AA3939 #AA3939 #ffffff
-	active_workspace   #555555 #555555 #ffffff
-	inactive_workspace #000000 #000000 #888888
-	urgent_workspace   #2f343a #8e3636 #ffffff
+	#grey
+  focused_workspace  #555555 #00000040 #ffffff
+	active_workspace   #555555 #55555540 #ffffff
+	inactive_workspace #777777 #00000040 #b3b3b3
+	urgent_workspace   #2f343a #8e363640 #ffffff
+  #with reds
+  #focused_workspace  #AA3939 #AA393940 #ffffff
+	#active_workspace   #555555 #55555540 #ffffff
+	#inactive_workspace #000000 #00000040 #ff9999
+	#urgent_workspace   #2f343a #8e363640 #ffffff
+	#normal
+  #focused_workspace  #AA3939 #AA3939 #ffffff
+	#active_workspace   #555555 #555555 #ffffff
+  #inactive_workspace #000000 #000000 #888888
+	#urgent_workspace   #2f343a #8e3636 #ffffff
 }
 }
 

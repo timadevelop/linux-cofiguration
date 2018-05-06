@@ -132,7 +132,8 @@ noremap <F3> :Autoformat<CR>
 Plug 'christoomey/vim-tmux-navigator'
 
 "finder
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " C, C++
 Plug 'arakashic/chromatica.nvim'

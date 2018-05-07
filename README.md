@@ -1,7 +1,7 @@
 # Linux configuration files
 
-![Result](./result.png)
-![transparency](./transparent.png)
+![Result](./result.jpg)
+![tmux-vim](./tmux-vim.jpg)
 ## CHANGELOG
 - `konsole` with `dark-pastels`
 - `vim` - use [haskell-vim-now](https://github.com/begriffs/haskell-vim-now) + additional keymaps

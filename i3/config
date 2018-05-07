@@ -174,13 +174,18 @@ status_command i3status # use i3status
 colors {
 	separator #888888
 #		statusline #ffffff
-	background #42424290 # 80
+	background #32323290 # 80
 	#color class       border  back.   text
 	#grey
-  focused_workspace  #555555 #00000040 #ffffff
-	active_workspace   #555555 #55555540 #ffffff
-	inactive_workspace #777777 #00000040 #b3b3b3
-	urgent_workspace   #2f343a #8e363640 #ffffff
+  # focused_workspace  #555555 #00000040 #ffffff
+	# active_workspace   #555555 #55555540 #ffffff
+	# inactive_workspace #777777 #00000040 #b3b3b3
+	# urgent_workspace   #2f343a #8e363640 #ffffff
+  # minim
+  focused_workspace  #32323290 #32323290 #ffffff
+	active_workspace   #32323290 #32323290 #b3b3b3
+	inactive_workspace #32323290 #32323290 #b3b3b3
+	urgent_workspace   #2f343a #e74c3c40 #ffffff
   #with reds
   #focused_workspace  #AA3939 #AA393940 #ffffff
 	#active_workspace   #555555 #55555540 #ffffff
@@ -206,6 +211,12 @@ client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r
 #
 exec --no-startup-id nitrogen --restore
 
+#
+# Autostart
+#
+# exec --no-startup-id i3-msg 'workspace 1:Web; exec skypeforlinux; exec telegram'
+
+
 # volume
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +10%
@@ -221,7 +232,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 #
 # # Touchpad controls
-#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+# bindsym XFexample86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec ./touchpad_toggle.sh
 #
 # # Media player controls
 bindsym XF86AudioPlay exec playerctl play

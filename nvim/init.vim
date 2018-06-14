@@ -101,6 +101,7 @@ Plug 'int3/vim-extradite'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
@@ -318,6 +319,7 @@ set gfn=Monaco:h19
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
+let g:airline_theme='deus'
 
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.space = "\ua0"

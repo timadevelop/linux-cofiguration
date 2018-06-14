@@ -185,7 +185,7 @@ colors {
   focused_workspace  #32323290 #32323290 #ffffff
 	active_workspace   #32323290 #32323290 #b3b3b3
 	inactive_workspace #32323290 #32323290 #b3b3b3
-	urgent_workspace   #2f343a #e74c3c40 #ffffff
+	urgent_workspace   #32323290 #e74c3c40 #ffffff
   #with reds
   #focused_workspace  #AA3939 #AA393940 #ffffff
 	#active_workspace   #555555 #55555540 #ffffff
@@ -233,7 +233,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 #
 # # Touchpad controls
 # bindsym XFexample86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-bindsym XF86TouchpadToggle exec ./touchpad_toggle.sh
+bindsym XF86TouchpadToggle exec /home/vlad/.config/i3/touchpad_toogle.sh
 #
 # # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -244,6 +244,7 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 # setting layouts
 exec_always "setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle"
+exec_always "xmodmap -e \"clear lock\";xmodmap -e \"keysym Caps_Lock = Escape\";"
 
 #
 # floating windows

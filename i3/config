@@ -106,7 +106,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace 9
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -214,7 +214,11 @@ exec --no-startup-id nitrogen --restore
 #
 # Autostart
 #
-# exec --no-startup-id i3-msg 'workspace 1:Web; exec skypeforlinux; exec telegram'
+exec --no-startup-id i3-msg 'workspace 1; exec xrandr --output HDMI-2 --left-of eDP-1; exec nitrogen --restore;'
+exec --no-startup-id i3-msg 'workspace 1; exec konsole;'
+exec --no-startup-id i3-msg 'workspace 1; exec owncloud;'
+exec --no-startup-id i3-msg 'workspace 2; exec google-chrome;'
+exec --no-startup-id i3-msg 'workspace 3; exec skypeforlinux; exec telegram'
 
 
 # volume

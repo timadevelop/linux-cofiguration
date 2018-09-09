@@ -102,7 +102,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
 " Text manipulation
@@ -115,6 +114,10 @@ Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'easymotion/vim-easymotion'
+
+map \\ <Plug>(easymotion-s)
+
+
 Plug 'ConradIrwin/vim-bracketed-paste'
 " autocomplite
 if has('nvim') " yup, it has
@@ -164,8 +167,15 @@ Plug 'mattn/emmet-vim'
 
 " Colorscheme
 Plug 'vim-scripts/wombat256.vim'
-Plug 'mhartington/oceanic-next'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'morhetz/gruvbox'
+
+
+" Icons
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+set encoding=UTF-8
+set guifont=Hack\ Regular\ Nerd\ Font\ Complete\ Mono\ 15
+
 
 " Custom bundles
 
@@ -273,7 +283,11 @@ endif
 
 " Theme
 syntax enable
-colorscheme wombat256mod
+set background=dark    " Setting dark mode
+let g:gruvbox_contrast_dark = 'soft'
+colorscheme wombat256mod "gruvbox
+
+
 catch
 endtry
 
@@ -370,6 +384,7 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
+set autoindent noexpandtab tabstop=4 shiftwidth=4
 
 " Linebreak on 500 characters
 set lbr
@@ -659,3 +674,42 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+
+
+"
+nnoremap <Space> <C-w>
+nnoremap <C-p> :Ag<SPACE><Enter>
+
+" you can add these colors to your .vimrc to help customizing
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif

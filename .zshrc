@@ -101,6 +101,8 @@ alias editconfig="nvim ~/.zshrc"
 alias loadconfig="source ~/.zshrc"
 alias npmr="npm run-script"
 alias v="nvim"
+alias vim="nvim"
+alias vi="nvim"
 alias nv="nvim"
 alias images="nomacs"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

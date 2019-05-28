@@ -1,0 +1,34 @@
+[Default Applications]
+x-scheme-handler/viber=viber.desktop
+x-scheme-handler/tg=telegramdesktop.desktop
+x-scheme-handler/webcal=google-chrome.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+application/pdf=google-chrome.desktop;zathura.desktop
+
+[Added Associations]
+image/png=org.kde.gwenview.desktop;gimp.desktop;nomacs.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;writer.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;okularApplication_ooo.desktop;
+application/pdf=libreoffice-draw.desktop;okularApplication_pdf.desktop;
+image/jpeg=shutter.desktop;nomacs.desktop;
+text/plain=atom.desktop;nvim.desktop;
+image/bmp=nomacs.desktop;
+text/html=google-chrome.desktop;
+image/svg+xml=google-chrome.desktop;firefox.desktop;inkscape.desktop;shutter.desktop;
+application/x-rar=org.kde.ark.desktop;
+application/zip=org.kde.ark.desktop;
+application/vnd.ms-powerpoint=impress.desktop;
+application/msword=libreoffice-writer.desktop;google-chrome.desktop;writer.desktop;
+text/csv=calc.desktop;
+image/x-xcf=okularApplication_kimgio.desktop;
+video/mp4=vlc.desktop;
+audio/mpeg=vlc.desktop;
+video/x-matroska=vlc.desktop;
+video/x-msvideo=vlc.desktop;org.kde.dragonplayer.desktop;
+application/json=atom.desktop;
+application/vnd.ms-excel=libreoffice-calc.desktop;
+text/x-csrc=nvim.desktop;

@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole #urxvt -e /bin/zsh
+bindsym $mod+Return exec urxvt -e tmux new-session -A -s main #konsole -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -59,16 +59,18 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 100px
+bindsym $mod+Shift+j move down 100px
+bindsym $mod+Shift+k move up 100px
+bindsym $mod+Shift+l move right 100px
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left 100px
+bindsym $mod+Shift+Down move down 100px
+bindsym $mod+Shift+Up move up 100px
+bindsym $mod+Shift+Right move right 100px
+
+bindsym $mod+Shift+i move absolute position center
 
 # split in horizontal orientation
 bindsym $mod+g split h
@@ -91,10 +93,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+c focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -121,7 +123,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -133,14 +135,10 @@ bindsym $mod+Shift+e exec /home/vlad/.config/i3/i3lock-fancy/lock -f monospace
 mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
 
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-bindsym j resize shrink width 10 px or 10 ppt
-bindsym k resize grow height 10 px or 10 ppt
-bindsym l resize shrink height 10 px or 10 ppt
-bindsym semicolon resize grow width 10 px or 10 ppt
+bindsym h resize shrink width 10 px or 10 ppt
+bindsym j resize grow height 10 px or 10 ppt
+bindsym k resize shrink height 10 px or 10 ppt
+bindsym l resize grow width 10 px or 10 ppt
 
 # same bindings, but for the arrow keys
 bindsym Left resize shrink width 10 px or 10 ppt
@@ -155,53 +153,12 @@ bindsym Escape mode "default"
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# AA3939 - red
-#
-bar{
-#mode hide
-#hidden_state hide
-#modifier $mod
-
-#workspace_buttons no
-
-i3bar_command i3bar -t
-#i3bar_command ./lemonbar/i3_lemonbar.sh
-position bottom # 
-status_command i3status # use i3status
-# height 30
-colors {
-	separator #888888
-#		statusline #ffffff
-	background #32323290 # 80
-	#color class       border  back.   text
-	#grey
-  # focused_workspace  #555555 #00000040 #ffffff
-	# active_workspace   #555555 #55555540 #ffffff
-	# inactive_workspace #777777 #00000040 #b3b3b3
-	# urgent_workspace   #2f343a #8e363640 #ffffff
-  # minim
-  focused_workspace  #32323290 #32323290 #ffffff
-	active_workspace   #32323290 #32323290 #b3b3b3
-	inactive_workspace #32323290 #32323290 #b3b3b3
-	urgent_workspace   #32323290 #e74c3c40 #ffffff
-  #with reds
-  #focused_workspace  #AA3939 #AA393940 #ffffff
-	#active_workspace   #555555 #55555540 #ffffff
-	#inactive_workspace #000000 #00000040 #ff9999
-	#urgent_workspace   #2f343a #8e363640 #ffffff
-	#normal
-  #focused_workspace  #AA3939 #AA3939 #ffffff
-	#active_workspace   #555555 #555555 #ffffff
-  #inactive_workspace #000000 #000000 #888888
-	#urgent_workspace   #2f343a #8e3636 #ffffff
-}
-}
+# Bar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #colors:                border  backgr. text    indicator
 #background #424242
-client.focused          #AA3939 #AA3939 #ffffff #424242
+client.focused          #809ebc #809ebc #ffffff #424242
 client.focused_inactive #888888 #424242 #ffffff #424242
 client.unfocused        #888888 #424242 #ffffff #424242
 client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r
@@ -210,30 +167,33 @@ client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r
 # GUI Monitors and wallpapers
 #
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id ~/.local/bin/blurwal
 
 #
 # Autostart
 #
 exec --no-startup-id i3-msg 'workspace 1; exec xrandr --output HDMI-2 --left-of eDP-1; exec nitrogen --restore;'
-exec --no-startup-id i3-msg 'workspace 1; exec konsole;'
-exec --no-startup-id i3-msg 'workspace 1; exec owncloud;'
+#exec --no-startup-id i3-msg 'workspace 1; exec urxvt;'
 exec --no-startup-id i3-msg 'workspace 2; exec google-chrome;'
-exec --no-startup-id i3-msg 'workspace 3; exec skypeforlinux; exec telegram'
+exec --no-startup-id i3-msg 'workspace 3; exec cpulimit -l 7 skypeforlinux; exec telegram-desktop; exec cpulimit -l 7 viber;'
+exec --no-startup-id i3-msg 'workspace 3; exec owncloud;'
 
 
 # volume
-set $sink `pactl list short sinks | grep RUNNING | cut -f1`
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +10%
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -- -10%
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
+set $sink `pactl list short sinks | grep analog | cut -f1`
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +10%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -- -10%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +3% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -3% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle # mute sound
 #
 # # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1
+bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 1
 #
 # # Touchpad controls
 # bindsym XFexample86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -248,13 +208,13 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 # setting layouts
 exec_always "setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle"
-exec_always "xmodmap -e \"clear lock\";xmodmap -e \"keysym Caps_Lock = Escape\";"
+# exec_always "xmodmap -e \"clear lock\";xmodmap -e \"keysym Caps_Lock = Escape\";"
 
 #
 # floating windows
 for_window [title="Drop-Down"] floating enable
 for_window [title="Shutter"] floating enable
-for_window [title="Thunar"] floating enable resize shrink height 200px, move down 100px, resize grow width 200px, move left 100px;
+for_window [title="Thunar"] floating enable resize shrink height 200px, resize grow width 200px;
 #
 # hide windows
 #
@@ -271,9 +231,15 @@ bindsym $mod+minus scratchpad show
 #smart_gaps on
 new_window none
 
-#for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 0
+for_window [class="__focused__"] border pixel 1
 gaps inner 20
 gaps outer 0
+# Examples
+bindsym $mod+Ctrl+a gaps outer all set 0
+#gaps outer current plus 5
+bindsym $mod+a gaps outer current plus 5
+bindsym $mod+Shift+a gaps outer current minus 5
 
 
 # Compton

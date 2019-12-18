@@ -105,10 +105,22 @@ alias vim="nvim"
 alias vi="nvim"
 alias nv="nvim"
 alias images="nomacs"
+alias fancy_wallpaper="~/.config/i3/wallpaper/run.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 
-export PATH=/usr/local/cuda-9.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+#export PATH=${PATH:+:${PATH}}
+#export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
+
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=green
+ZSH_HIGHLIGHT_STYLES[line]=bold
+ZSH_HIGHLIGHT_STYLES[path]=fg=157,underline
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
+ZSH_HIGHLIGHT_STYLES[default]=fg=red,underline
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'

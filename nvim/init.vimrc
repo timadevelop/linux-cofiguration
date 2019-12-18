@@ -50,7 +50,7 @@ if ! exists("mapleader")
 endif
 
 if ! exists("g:mapleader")
-    let g:mapleader = ","
+  let g:mapleader = ","
 endif
 
 " Leader key timeout
@@ -90,61 +90,29 @@ Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'vim-scripts/gitignore'
+Plug 'vim-scripts/gitignore'
 
-Plug 'roxma/python-support.nvim'
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'int3/vim-extradite'
 
 " Bars, panels, and files
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
 " Text manipulation
 Plug 'vim-scripts/Align'
 Plug 'simnalamburt/vim-mundo'
-" Plug 'tpope/vim-commentary'
-Plug 'tomtom/tcomment_vim'
-
-
+Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'easymotion/vim-easymotion'
-
-map \\ <Plug>(easymotion-s)
-
-
-
 Plug 'ConradIrwin/vim-bracketed-paste'
-
-" autocomplite
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-
-" autoformat
-Plug 'chiel92/vim-autoformat'
-noremap <F3> :Autoformat<CR>
 
 " Allow pane movement to jump out of vim into tmux
 Plug 'christoomey/vim-tmux-navigator'
-
-"finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" C, C++
-Plug 'arakashic/chromatica.nvim'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -154,34 +122,8 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
-" elixir
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
-
-" android
-" Plug 'udalov/kotlin-vim'
-Plug 'sheerun/vim-polyglot'
-
-" frontend
-" Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-
 " Colorscheme
 Plug 'vim-scripts/wombat256.vim'
-Plug 'morhetz/gruvbox'
-
-" Media
-Plug 'ashisha/image.vim'
-
-" Icons
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-set encoding=UTF-8
-set guifont=Hack\ Regular\ Nerd\ Font\ Complete\ Mono\ 15
-
 
 " Custom bundles
 
@@ -195,8 +137,6 @@ call plug#end()
 
 " VIM user interface {{{
 
-set relativenumber
-
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -207,13 +147,13 @@ set wildmode=list:longest,full
 
 " Always show current position
 set ruler
-set number relativenumber
+set number
 
 " Show trailing whitespace
 set list
 " But only interesting whitespace
 if &listchars ==# 'eol:$'
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
 " Height of the command bar
@@ -251,10 +191,10 @@ set noerrorbells
 set vb t_vb=
 
 if &term =~ '256color'
-" disable Background Color Erase (BCE) so that color schemes
-" render properly when inside 256-color tmux and GNU screen.
-" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-set t_ut=
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
 endif
 
 " Force redraw
@@ -271,29 +211,15 @@ set mouse=a
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 " }}}
 
 " Colors and Fonts {{{
 
 try
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" Theme
-syntax enable
-set background=dark    " Setting dark mode
-let g:gruvbox_contrast_dark = 'soft'
-colorscheme wombat256mod "gruvbox
-
-
+  colorscheme wombat256mod
 catch
 endtry
 
@@ -316,17 +242,17 @@ set guicursor+=n-v-c:blinkon0
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-set guioptions-=T
-set guioptions-=e
-set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions-=e
+  set guitablabel=%M\ %t
 endif
 set t_Co=256
 
 " Set utf8 as standard encoding and en_US as the standard language
 if !has('nvim')
-" Only set this for vim, since neovim is utf8 as default and setting it
-" causes problems when reloading the .vimrc configuration
-set encoding=utf8
+  " Only set this for vim, since neovim is utf8 as default and setting it
+  " causes problems when reloading the .vimrc configuration
+  set encoding=utf8
 endif
 
 " Use Unix as the standard file type
@@ -337,9 +263,8 @@ set gfn=Monaco:h19
 
 " Use powerline fonts for airline
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
-let g:airline_theme='deus'
 
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.space = "\ua0"
@@ -352,18 +277,14 @@ set nobackup
 set nowb
 set noswapfile
 
-
-set undodir=~/.vim/undo_files
-set undofile
-
 " Source the vimrc file after saving it
 augroup sourcing
-autocmd!
-if has('nvim')
-  autocmd bufwritepost init.vim source $MYVIMRC
-else
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+  autocmd!
+  if has('nvim')
+    autocmd bufwritepost init.vim source $MYVIMRC
+  else
+    autocmd bufwritepost .vimrc source $MYVIMRC
+  endif
 augroup END
 
 " Open file prompt with current path
@@ -387,10 +308,9 @@ set expandtab
 
 " 1 tab == 2 spaces, unless the file is already
 " using tabs, in which case tabs will be inserted.
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set autoindent expandtab tabstop=4 shiftwidth=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -436,11 +356,11 @@ nmap <silent> <leader><cr> :noh\|hi Cursor guibg=red<cr>
 
 " Return to last edit position when opening files (You want this!)
 augroup last_edit
-autocmd!
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+  autocmd!
+  autocmd BufReadPost *
+       \ if line("'\"") > 0 && line("'\"") <= line("$") |
+       \   exe "normal! g`\"" |
+       \ endif
 augroup END
 " Remember info about open buffers on close
 set viminfo^=%
@@ -477,13 +397,13 @@ noremap <leader>b<space> :CtrlPBuffer<cr>
 
 " Neovim terminal configurations
 if has('nvim')
-" Use <Esc> to escape terminal insert mode
-tnoremap <Esc> <C-\><C-n>
-" Make terminal split moving behave like normal neovim
-tnoremap <c-h> <C-\><C-n><C-w>h
-tnoremap <c-j> <C-\><C-n><C-w>j
-tnoremap <c-k> <C-\><C-n><C-w>k
-tnoremap <c-l> <C-\><C-n><C-w>l
+  " Use <Esc> to escape terminal insert mode
+  tnoremap <Esc> <C-\><C-n>
+  " Make terminal split moving behave like normal neovim
+  tnoremap <c-h> <C-\><C-n><C-w>h
+  tnoremap <c-j> <C-\><C-n><C-w>j
+  tnoremap <c-k> <C-\><C-n><C-w>k
+  tnoremap <c-l> <C-\><C-n><C-w>l
 endif
 
 
@@ -500,9 +420,9 @@ set laststatus=2
 
 " Utility function to delete trailing white space
 func! DeleteTrailingWS()
-exe "normal mz"
-%s/\s\+$//ge
-exe "normal `z"
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
 endfunc
 
 " }}}
@@ -517,30 +437,30 @@ map <leader>ss :setlocal spell!<cr>
 " Helper functions {{{
 
 function! CmdLine(str)
-exe "menu Foo.Bar :" . a:str
-emenu Foo.Bar
-unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 function! VisualSelection(direction, extra_filter) range
-let l:saved_reg = @"
-execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-let l:pattern = escape(@", '\\/.*$^~[]')
-let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-if a:direction == 'b'
-  execute "normal ?" . l:pattern . "^M"
-elseif a:direction == 'gv'
-  call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-elseif a:direction == 'replace'
-  call CmdLine("%s" . '/'. l:pattern . '/')
-elseif a:direction == 'f'
-  execute "normal /" . l:pattern . "^M"
-endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
 
-let @/ = l:pattern
-let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 " }}}
@@ -659,63 +579,9 @@ let g:NERDTreeQuitOnOpen = 0
 " center
 nnoremap K kzz
 nnoremap J jzz
+nnoremap P Pzz
+nnoremap G Gzz
+" nnoremap x xzz
 
-" start and end of line
-noremap H ^
-noremap L $
-
-" commentary
-"
-vnoremap <C-/> gcc
-
-
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-
-"
-nnoremap <Space> <C-w>
-nnoremap <C-p> :Ag<SPACE><Enter>
-
-" you can add these colors to your .vimrc to help customizing
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-
-
-let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
-
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
-
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
+" elixir
+" Plug 'elixir-editors/vim-elixir'

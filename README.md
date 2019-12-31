@@ -53,3 +53,4 @@ nvidia settings: `optirun nvidia-settings -c :8`
 `cat /proc/acpi/bbswitch` should show OFF while no application is using the Nvidia GPU and ON otherwise
 
 `optirun glspheres` should run sample
+

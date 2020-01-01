@@ -242,7 +242,7 @@ bindsym $mod+a gaps outer current plus 5
 bindsym $mod+Shift+a gaps outer current minus 5
 
 
-# Compton
-exec_always --no-startup-id "killall -q compton; compton --config ~/.config/i3/compton.conf"
+# Picom
+exec_always --no-startup-id "killall -q picom; picom --config ~/.config/i3/picom.conf"
 
 

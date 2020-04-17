@@ -10,6 +10,8 @@ export ZSH=/home/vlad/.oh-my-zsh
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="geometry/geometry"
 #ZSH_THEME="wedisagree"
+GEOMETRY_PROMPT_PLUGINS=(virtualenv git hg node)
+
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -66,6 +68,7 @@ plugins=(
   sudo
   zsh-autosuggestions
   zsh-syntax-highlighting
+  virtualenv
 )
 
 source $ZSH/oh-my-zsh.sh

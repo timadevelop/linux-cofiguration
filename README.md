@@ -24,6 +24,7 @@
 - `compton` for transparency
 - `the_silver_searcher` for ag
 - `i3-gaps`
+- `noto-fonts-emoji`
 
 
 ## Nvidia optimus

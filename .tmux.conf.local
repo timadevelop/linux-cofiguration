@@ -268,3 +268,5 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g status-position top
 
 set-option -g default-shell /bin/zsh
+
+set-window-option -g mode-keys vi

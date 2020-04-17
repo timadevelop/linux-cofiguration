@@ -90,19 +90,20 @@ Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'vim-scripts/gitignore'
-
 Plug 'roxma/python-support.nvim'
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'int3/vim-extradite'
+Plug 'vim-scripts/gitignore'
 
 " Bars, panels, and files
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
 " Text manipulation
@@ -387,10 +388,10 @@ set expandtab
 
 " 1 tab == 2 spaces, unless the file is already
 " using tabs, in which case tabs will be inserted.
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set autoindent expandtab tabstop=4 shiftwidth=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set autoindent expandtab
 
 " Linebreak on 500 characters
 set lbr
@@ -659,6 +660,8 @@ let g:NERDTreeQuitOnOpen = 0
 " center
 nnoremap K kzz
 nnoremap J jzz
+nnoremap P Pzz
+nnoremap G Gzz
 
 " start and end of line
 noremap H ^

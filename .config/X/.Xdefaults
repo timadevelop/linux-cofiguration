@@ -4,20 +4,24 @@ Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
-URxvt*font: xft:Hack: size=8:antialias=true, \
-            xft:fontawesome:size:12, \
-            xft:Hack Nerd Font Mono:size:12
-URxvt*boldFont: xft:Hack: size=8:antialias=true:style=bold, \
-                xft:fontawesome:size:12, \
-                xft:Hack Nerd Font Mono:size:12
-#URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=10
-#URxvt*letterSpace: -1 # break some symbols
+URxvt*font: xft:Hack:size=9:antialias=true, \
+            xft:Noto Color Emoji:size=10, \
+            xft:Hack Nerd Font Mono:size=12
+
+URxvt*boldFont: xft:Hack:size=9:antialias=true:style=bold, \
+                xft:Noto Color Emoji:size=10, \
+                xft:Hack Nerd Font Mono:size=12:style=bold
 
 ################
 # URXVT settings
 ################
 URxvt.borderless: true
-URxvt.cursorColor:  #afbfbf
+URxvt.cursorColor:  #94BFF3
+
+! cursor underline  
+URxvt*cursorUnderline:      true
+! cursor blinking 
+URxvt*cursorBlink:          false
 
 #URxvt*.transparent: true
 #URxvt*.shading: 20
@@ -44,7 +48,7 @@ URxvt*foreground: #DCDCCC
 URxvt.color0  : #3F3F3F
 URxvt.color8  : #709080
 ! red
-URxvt.color1  : #705050
+URxvt.color1  : #DCA3A3
 URxvt.color9  : #DCA3A3
 ! green
 URxvt.color2  : #60B48A

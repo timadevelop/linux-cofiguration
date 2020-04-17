@@ -104,7 +104,7 @@ alias editconfig="nvim ~/.zshrc"
 alias loadconfig="source ~/.zshrc"
 alias npmr="npm run-script"
 alias v="nvim"
-alias vim="nvim"
+alias vim="vim"
 alias vi="nvim"
 alias nv="nvim"
 alias images="nomacs"
@@ -125,5 +125,7 @@ ZSH_HIGHLIGHT_STYLES[line]=bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=157,underline
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
 ZSH_HIGHLIGHT_STYLES[default]=fg=red,underline
+ZSH_HIGHLIGHT_STYLES[cursor]=bg=transparent
+
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'

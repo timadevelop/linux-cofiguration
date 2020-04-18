@@ -1,9 +1,55 @@
+!#
+!# Dark pastels
+!#
+!#
+*background: #2C2C2C
+*foreground: #DCDCCC
+
+! black
+*.color0  : #4b4b4b ! 3F3F3F
+*.color8  : #709080
+
+! red
+*.color1  : #DCA3A3
+*.color9  : #DCA3A3
+
+! green
+*.color2  : #60B48a
+*.color10 : #72D5A3
+
+! yellow
+*.color3  : #DFAF8F
+*.color11 : #F0DFAF
+
+! blue
+*.color4  : #9AB8D7
+*.color12 : #94BFF3
+
+! magenta
+*.color5  : #DC8CC3
+*.color13 : #EC93D3
+
+! cyan
+*.color6  : #8CD0D3
+*.color14 : #93E0E3
+
+! white
+*.color7  : #DCDCCC
+*.color15 : #FFFFFF
+
+
+*.cursorColor:  #94BFF3
+
+! fonts
 Xft.dpi:                    96
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
+!
+! URXVT settings
+!
 URxvt*font: xft:Hack:size=9:antialias=true, \
             xft:Noto Color Emoji:size=10, \
             xft:Hack Nerd Font Mono:size=12
@@ -12,67 +58,30 @@ URxvt*boldFont: xft:Hack:size=9:antialias=true:style=bold, \
                 xft:Noto Color Emoji:size=10, \
                 xft:Hack Nerd Font Mono:size=12:style=bold
 
-################
-# URXVT settings
-################
 URxvt.borderless: true
-URxvt.cursorColor:  #94BFF3
 
 ! cursor underline  
 URxvt*cursorUnderline:      true
 ! cursor blinking 
 URxvt*cursorBlink:          false
 
-#URxvt*.transparent: true
-#URxvt*.shading: 20
-#Urxvt*depth: 32
-#Urxvt*background: rgba:0000/0000/0200/c800
-#URxvt.depth:                32
+!URxvt*.transparent: true
+!URxvt*.shading: 20
+!Urxvt*depth: 32
+!Urxvt*background: rgba:0000/0000/0200/c800
+!URxvt.depth:                32
 URxvt.geometry:    90x30
 URxvt.loginShell:           true
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
-
-
 URxvt*saveLines: 12000
-
-# scrollbar - true (default) or false
+! scrollbar - true (default) or false
 URxvt*scrollBar: false
-##
-## Dark pastels
-##
-##
-URxvt*background: #2C2C2C
-URxvt*foreground: #DCDCCC
-! black
-URxvt.color0  : #3F3F3F
-URxvt.color8  : #709080
-! red
-URxvt.color1  : #DCA3A3
-URxvt.color9  : #DCA3A3
-! green
-URxvt.color2  : #60B48A
-URxvt.color10 : #72D5A3
-! yellow
-URxvt.color3  : #DFAF8F
-URxvt.color11 : #F0DFAF
-! blue
-URxvt.color4  : #9AB8D7
-URxvt.color12 : #94BFF3
-! magenta
-URxvt.color5  : #DC8CC3
-URxvt.color13 : #EC93D3
-! cyan
-URxvt.color6  : #8CD0D3
-URxvt.color14 : #93E0E3
-! white
-URxvt.color7  : #DCDCCC
-URxvt.color15 : #FFFFFF
 
 
 !! Extensions
-URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
-URxvt.colorUL:		#4682B4
+URxvt.perl-ext-common:default,matcher,resize-font,url-select,keyboard-select
+URxvt.colorUL: #4682B4
 !! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/xdg-open
@@ -81,11 +90,15 @@ URxvt.url-select.underline: true
 !! keyboard-select:
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 !! resize-font
-! URxvt.resize-font.smaller:	C-Down
-! URxvt.resize-font.bigger:	C-Up
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
 !! Matcher
 URxvt.matcher.button:	1
 
+
+!
+! rofi settings
+!
 rofi.color-enabled:	true
 rofi.color-window:	#000, #000, #000
 rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
@@ -99,40 +112,3 @@ rofi.fake-transparency:	false
 ! rofi.hide-scrollbar:	true
 ! rofi.width:		30
 
-
-! ~/.Xresource
-*.foreground:   #cbe3e7
-*.background:   #1e1c31
-*.cursorColor:  #afbfbf
-
-! black
-*.color0:       #565575
-*.color8:       #100e23
-
-! red
-*.color1:       #ff8080
-*.color9:       #ff5458
-
-! green
-*.color2:       #95ffa4
-*.color10:      #62d196
-
-! yellow
-*.color3:       #ffe9aa
-*.color11:      #ffb378
-
-! blue
-*.color4:       #91ddff
-*.color12:      #65b2ff
-
-! magenta
-*.color5:       #c991e1
-*.color13:      #906cff
-
-! cyan
-*.color6:       #aaffe4
-*.color14:      #63f2f1
-
-! white
-*.color7:       #cbe3e7
-*.color15:      #a6b3cc

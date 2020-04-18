@@ -12,6 +12,15 @@ ZSH_THEME="geometry/geometry"
 #ZSH_THEME="wedisagree"
 GEOMETRY_PROMPT_PLUGINS=(virtualenv git hg node)
 
+GEOMETRY_GIT_SYMBOL_REBASE="\uE0A0" # set the default rebase symbol to the powerline symbol 
+GEOMETRY_GIT_SYMBOL_STASHES=x       # change the git stash indicator to `x`
+GEOMETRY_GIT_COLOR_STASHES=blue     # change the git stash color to blue
+GEOMETRY_GIT_GREP=ack               # define which grep-like tool to use (By default it looks for rg, ag and finally grep)
+GEOMETRY_GIT_NO_COMMITS_MESSAGE=""  # hide the 'no commits' message in new repositories
+GEOMETRY_GIT_TIME_DETAILED=true     # show full time (e.g. `12h 30m 53s`) instead of the coarsest interval (e.g. `12h`)
+
+GEOMETRY_SYMBOL_GIT_DIRTY=
+GEOMETRY_SYMBOL_GIT_CLEAN=
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random

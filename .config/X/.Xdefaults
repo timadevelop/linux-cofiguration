@@ -6,7 +6,8 @@
 *foreground: #DCDCCC
 
 ! black
-*.color0  : #4b4b4b ! 3F3F3F
+*.color0  : #4b4b4b
+! 3F3F3F
 *.color8  : #709080
 
 ! red
@@ -50,13 +51,11 @@ Xft.hintstyle:              hintslight
 !
 ! URXVT settings
 !
-URxvt*font: xft:Hack:size=9:antialias=true, \
-            xft:Noto Color Emoji:size=10, \
-            xft:Hack Nerd Font Mono:size=12
+URxvt*font: xft:Hack\ Nerd\ Font:size=9:antialias=true, \
+            xft:Hack\ Nerd\ Font\ Mono
 
 URxvt*boldFont: xft:Hack:size=9:antialias=true:style=bold, \
-                xft:Noto Color Emoji:size=10, \
-                xft:Hack Nerd Font Mono:size=12:style=bold
+                xft:Hack\ Nerd\ Font\ Mono:size=12:style=bold
 
 URxvt.borderless: true
 

@@ -177,18 +177,25 @@ Plug 'morhetz/gruvbox'
 " Media
 Plug 'ashisha/image.vim'
 
+" Color codes highlight
+Plug 'chrisbra/Colorizer'
+
 " Icons
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 set encoding=UTF-8
 set guifont=Hack\ Regular\ Nerd\ Font\ Complete\ Mono\ 15
 
+" Call colorizer by default
+autocmd VimEnter * if exists(":ColorHighlight") | ColorHighlight | endif
 
-" Custom bundles
+
+"" Custom bundles
 
 if filereadable(hvn_user_plugins)
   execute 'source '. hvn_user_plugins
 endif
+
 
 call plug#end()
 

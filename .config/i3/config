@@ -184,7 +184,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #colors:                border  backgr. text    indicator
 #background #424242
-client.focused          #809ebc #809ebc #ffffff #424242
+client.focused          #809ebc #ffe9aa #ffffff #424242
 client.focused_inactive #888888 #424242 #ffffff #424242
 client.unfocused        #888888 #424242 #ffffff #424242
 client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r
@@ -266,7 +266,7 @@ bindsym $mod+minus scratchpad show
 #smart_gaps on
 new_window none
 
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 for_window [class="__focused__"] border pixel 1
 gaps inner 20
 gaps outer 0

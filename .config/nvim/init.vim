@@ -722,3 +722,6 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets th
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+
+source ~/.vimrc

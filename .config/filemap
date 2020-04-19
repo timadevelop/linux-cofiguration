@@ -1,0 +1,40 @@
+#
+# Config files filemap
+#
+
+~/.profile glob/
+~/.bash_profile glob/
+~/.nvidia-settings-rc glob/
+
+~/.i18n glob/
+
+~/.xinitrc X/
+~/.Xdefaults X/
+
+
+~/.tmux.conf tmux/
+~/.tmux.conf.local tmux/
+
+~/.zshrc zsh/
+
+~/.tldrrc glob/
+# tldr complete
+
+~/.i3status.conf i3status/
+
+~/.gitconfig git/
+
+~/.fzf.bash bash/
+~/.fzf.zsh zsh/
+
+~/.basrc bash/
+
+
+~/.config/htop/ htop/
+~/.config/i3/ i3/
+~/.config/nvim/init.vim nvim/
+~/.vimrc nvim/
+~/.config/polybar/config polybar/
+~/.config/ranger/rc.conf ranger/
+~/.config/rofi/config rofi/
+

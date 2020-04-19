@@ -52,10 +52,12 @@ Xft.hintstyle:              hintslight
 ! URXVT settings
 !
 URxvt*font: xft:Hack\ Nerd\ Font:size=9:antialias=true, \
-            xft:Hack\ Nerd\ Font\ Mono
+            xft:Hack\ Nerd\ Font\ Mono, \
+            xft:Siji:pixelsize=10
 
 URxvt*boldFont: xft:Hack:size=9:antialias=true:style=bold, \
-                xft:Hack\ Nerd\ Font\ Mono:size=12:style=bold
+                xft:Hack\ Nerd\ Font\ Mono:size=12:style=bold, \
+                xft:Siji:pixelsize=10
 
 URxvt.borderless: true
 

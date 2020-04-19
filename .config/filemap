@@ -35,6 +35,13 @@
 ~/.config/nvim/init.vim nvim/
 ~/.vimrc nvim/
 ~/.config/polybar/config polybar/
+~/.config/polybar/launch.sh polybar/
 ~/.config/ranger/rc.conf ranger/
 ~/.config/rofi/config rofi/
+
+/etc/X11/xorg.conf.d/ root/X11/xorg.conf.d/
+
+/etc/X11/10-nvidia-drm-outputclass.conf root/X11/
+
+/etc/pacman.conf root/etc/
 

@@ -191,9 +191,6 @@ client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r #8e3636
 #
 # GUI Monitors and wallpapers
 #
-exec --no-startup-id xrandr --output HDMI-2 --left-of eDP-1
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id ~/.local/bin/blurwal
 
 assign [class="urxvt"] $ws01
 assign [class="chrome"] $ws02
@@ -211,7 +208,7 @@ exec --no-startup-id i3-msg 'exec google-chrome-stable;'
 exec --no-startup-id i3-msg 'exec telegram-desktop;'
 exec --no-startup-id i3-msg 'exec mailspring; exec slack;'
 exec --no-startup-id i3-msg 'exec skypeforlinux; exec viber; exec owncloud;'
-exec --no-startup-id i3-msg 'workspace $ws01;move workspace $01 to output left; workspace $ws02; move workspace $ws01 to output left; '
+exec --no-startup-id i3-msg 'workspace $ws01;move workspace $ws01 to output left; workspace $ws02; move workspace $ws01 to output left; '
 
 # volume
 set $sink `pactl list short sinks | grep analog | cut -f1`

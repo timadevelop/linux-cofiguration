@@ -1,0 +1,59 @@
+#!/bin/bash
+
+default() {
+  echo "Error, neither light nor xbacklight available"
+}
+
+MANAGER=
+INCREASE_FLAG=
+DECREASE_FLAG=
+
+# Evaluate MANAGER
+if [[ -x "$(command -v light)" ]]; then
+  MANAGER=light
+  INCREASE_FLAG="-A"
+  DECREASE_FLAG="-U"
+elif [[ -x "$(command -v xbacklight)" ]]; then
+  MANAGER=xbacklight
+  INCREASE_FLAG="-inc"
+  DECREASE_FLAG="-dec"
+else
+  MANAGER=default
+fi
+
+# define cmds
+increase() {
+  eval "$MANAGER $INCREASE_FLAG $1"
+}
+
+decrease() {
+  eval "$MANAGER $DECREASE_FLAG $1"
+}
+
+# sw case args
+apply_args() {
+  case $1 in
+    -inc )
+      increase $2
+      ;;
+    -dec )
+      decrease $2
+      ;;
+    * )
+      echo "Invalid option"
+      ;;
+  esac
+}
+
+# Parse args
+while [ "$1" != "" ]; do
+    PARAM=`printf "%s\n" $1 | awk -F= '{print $1}'`
+    VALUE=`printf "%s\n" $1 | sed 's/^[^=]*=//g'`
+    if [[ $VALUE == $PARAM ]]; then
+        shift
+        VALUE=$1
+        apply_args $PARAM $VALUE
+    fi
+    shift
+done
+

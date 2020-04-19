@@ -1,9 +1,9 @@
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
-/home/vlad/.config/i3/xrandr.sh
+$HOME/.scripts/configure_monitors.sh
 
-xset +fp /home/vlad/.local/share/fonts
+xset +fp $HOME/.local/share/fonts
 xset fp rehash
 
 dbus-update-activation-environment --systemd DISPLAY

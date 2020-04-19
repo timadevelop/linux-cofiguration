@@ -78,6 +78,9 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   virtualenv
+  alias-finder
+  docker-compose
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -86,9 +89,6 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias editconfig="nvim ~/.zshrc"
 alias loadconfig="source ~/.zshrc"
-
-# init fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Zsh highlight configuration
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)

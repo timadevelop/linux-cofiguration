@@ -1,34 +1,38 @@
-" HVN paths {{{
-" Set XDG_CONFIG_HOME/haskell-vim-now to load user's config files
+" Variables {{{
+" Set XDG_CONFIG_HOME to load user's config files
 if exists($XDG_CONFIG_HOME)
-  let hvn_config_dir = $XDG_CONFIG_HOME . "/haskell-vim-now"
+  let vimrc_dir = $XDG_CONFIG_HOME . "/vim"
 else
-  let hvn_config_dir = $HOME . "/.config/haskell-vim-now"
+  let vimrc_dir = $HOME
 endif
 
-" Haskell Vim Now paths
-" haskell config path
-let hvn_config_haskell = expand(resolve(hvn_config_dir . "/vimrc.haskell"))
-" pre config path
-let hvn_config_pre = expand(resolve(hvn_config_dir . "/vimrc.local.pre"))
-" post config path
-let hvn_config_post = expand(resolve(hvn_config_dir . "/vimrc.local"))
-" user plugins config path
-let hvn_user_plugins = expand(resolve(hvn_config_dir . "/plugins.vim"))
+let vimrc_conf_post = expand(resolve(vimrc_dir . "/.vimrc"))
+
 " }}}
 
 " Precustomization {{{
-if filereadable(hvn_config_pre)
-  execute 'source '. hvn_config_pre
-endif
+" Example:
+" if filereadable(vimrc_conf_post)
+"   execute 'source '. vimrc_conf_post
+" endif
 " }}}
 
 " General {{{
 " Use indentation for folds
-set foldmethod=indent
+set foldmethod=marker
 set foldnestmax=5
 set foldlevelstart=99
 set foldcolumn=0
+
+nmap zt :call <SID>ToggleFold()<CR>
+function! s:ToggleFold()
+    if &foldmethod == 'marker'
+        let &l:foldmethod = 'indent'
+    else
+        let &l:foldmethod = 'marker'
+    endif
+    echo 'foldmethod is now ' . &l:foldmethod
+endfunction
 
 augroup vimrcFold
   " fold vimrc itself by categories
@@ -84,44 +88,66 @@ else
 endif
 
 " Support bundles
+" send commands to tmux
 Plug 'jgdavey/tslime.vim'
+" just to support async tasks
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Supertab to use <Tab> for all insert completion needs (:help ins-completion).
 Plug 'ervandew/supertab'
-Plug 'benekastah/neomake'
+" make
+Plug 'neomake/neomake'
+" better buffer delete
 Plug 'moll/vim-bbye'
+" display visualy indentation
 Plug 'nathanaelkane/vim-indent-guides'
+" Initialize python support
 Plug 'roxma/python-support.nvim'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
+" Just run :Extradite
 Plug 'int3/vim-extradite'
-Plug 'vim-scripts/gitignore'
+" Plug 'vim-scripts/gitignore'
 
 " Bars, panels, and files
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
+
+"fzfinder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" :TagbarToggle
 Plug 'majutsushi/tagbar'
 
 " Text manipulation
 Plug 'vim-scripts/Align'
+" autoformat
+Plug 'chiel92/vim-autoformat'
+noremap <F3> :Autoformat<CR>
+" :MundoToggle
 Plug 'simnalamburt/vim-mundo'
-" Plug 'tpope/vim-commentary'
+" gcc
 Plug 'tomtom/tcomment_vim'
-
-
 Plug 'godlygeek/tabular'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'easymotion/vim-easymotion'
-
 map \\ <Plug>(easymotion-s)
 
-
-
+" Sane paste in insert mode
 Plug 'ConradIrwin/vim-bracketed-paste'
+
+" 
+Plug 'jiangmiao/auto-pairs'
 
 " autocomplite
 if has('nvim')
@@ -131,20 +157,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
 
-" autoformat
-Plug 'chiel92/vim-autoformat'
-noremap <F3> :Autoformat<CR>
 
-" Allow pane movement to jump out of vim into tmux
-Plug 'christoomey/vim-tmux-navigator'
-
-"finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" C, C++
+" Clang syntax hilighting
 Plug 'arakashic/chromatica.nvim'
 
 " Haskell
@@ -159,23 +174,17 @@ Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 
-" android
-" Plug 'udalov/kotlin-vim'
+" Langs
 Plug 'sheerun/vim-polyglot'
 
 " frontend
-" Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+" Plug 'mattn/emmet-vim'
 
 " Colorscheme
 Plug 'vim-scripts/wombat256.vim'
 Plug 'morhetz/gruvbox'
-
-" Media
-Plug 'ashisha/image.vim'
 
 " Color codes highlight
 Plug 'chrisbra/Colorizer'
@@ -183,27 +192,71 @@ Plug 'chrisbra/Colorizer'
 " Icons
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-set encoding=UTF-8
-set guifont=Hack\ Regular\ Nerd\ Font\ Complete\ Mono\ 15
-
-" Call colorizer by default
-autocmd VimEnter * if exists(":ColorHighlight") | ColorHighlight | endif
-
 
 "" Custom bundles
 
-if filereadable(hvn_user_plugins)
-  execute 'source '. hvn_user_plugins
-endif
+" Example:
+" if filereadable(user_plugins)
+"   execute 'source '. user_plugins
+" endif
 
 
 call plug#end()
 
 " }}}
 
-" VIM user interface {{{
+" Deoplete {{{
+"
+let g:deoplete#enable_at_startup = 1
 
-set relativenumber
+"}}}
+
+" Autostart {{{
+" Example: Call colorizer by default
+" autocmd VimEnter * if exists(":ColorHighlight") | ColorHighlight | endif
+" }}}
+
+" Fzf config {{{
+" install the_silver_searcher on your system
+  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+  nnoremap <silent> <leader><space> :GFiles<CR>
+  nnoremap <silent> <C-p> :Files<CR>
+  nnoremap <silent> <leader>fb :Buffers<CR>
+  nnoremap <silent> <leader>fw :Windows<CR>
+  nnoremap <silent> <leader>fl :BLines<CR>
+  nnoremap <silent> <leader>ft :BTags<CR>
+  nnoremap <silent> <leader>fT :Tags<CR>
+  nnoremap <silent> <leader>fh :History<CR>
+  nnoremap <silent> <leader>/ :Ag<CR>
+
+  vnoremap <silent> <leader>f* :call SearchVisualSelectionWithAg()<CR>
+  nnoremap <silent> <leader>fc :Commits<CR>
+  nnoremap <silent> <leader>fs :Filetypes<CR>
+
+  imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+  imap <C-x><C-l> <plug>(fzf-complete-line)
+
+
+  function! SearchVisualSelectionWithAg() range
+    let old_reg = getreg('"')
+    let old_regtype = getregtype('"')
+    let old_clipboard = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', old_reg, old_regtype)
+    let &clipboard = old_clipboard
+    execute 'Ag' selection
+  endfunction
+
+  function! SearchWithAgInDirectory(...)
+    call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+  endfunction
+  command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
+" }}}
+
+" VIM user interface {{{
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -274,8 +327,8 @@ nnoremap <leader>ma :set mouse=a<cr>
 " Turn mouse mode off
 nnoremap <leader>mo :set mouse=<cr>
 
-" Default to mouse mode on
-set mouse=a
+" Default to mouse mode off
+set mouse=
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
@@ -299,24 +352,33 @@ endif
 syntax enable
 set background=dark    " Setting dark mode
 let g:gruvbox_contrast_dark = 'soft'
-colorscheme wombat256mod "gruvbox
+" colorscheme wombat256mod "gruvbox
+colorscheme gruvbox
 
 
 catch
 endtry
 
+"""
+" Wombat fixes
+"""
+
 " Adjust signscolumn to match wombat
 hi! link SignColumn LineNr
 
-" Use pleasant but very visible search hilighting
-hi Search ctermfg=white ctermbg=173 cterm=none guifg=#ffffff guibg=#e5786d gui=none
-hi! link Visual Search
+" " Use pleasant but very visible search hilighting
+" hi Search ctermfg=white ctermbg=173 cterm=none guifg=#ffffff guibg=#e5786d gui=none
+" hi! link Visual Search
+"
+" " Match wombat colors in nerd tree
+" hi Directory guifg=#8ac6f2
+" "
+" " Searing red very visible cursor
+" hi Cursor guibg=red
 
-" Match wombat colors in nerd tree
-hi Directory guifg=#8ac6f2
-
-" Searing red very visible cursor
-hi Cursor guibg=red
+"""
+" EOF Wombat fixes
+"""
 
 " Don't blink normal mode cursor
 set guicursor=n-v-c:block-Cursor
@@ -328,29 +390,20 @@ set guioptions-=T
 set guioptions-=e
 set guitablabel=%M\ %t
 endif
+
+
 set t_Co=256
 
 " Set utf8 as standard encoding and en_US as the standard language
 if !has('nvim')
-" Only set this for vim, since neovim is utf8 as default and setting it
-" causes problems when reloading the .vimrc configuration
-set encoding=utf8
+  " Only set this for vim, since neovim is utf8 as default and setting it
+  " causes problems when reloading the .vimrc configuration
+  set encoding=utf8
 endif
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" Use large font by default in MacVim
-set gfn=Monaco:h19
-
-" Use powerline fonts for airline
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-let g:airline_theme='deus'
-
-let g:airline_powerline_fonts = 1
-let g:airline_symbols.space = "\ua0"
 " }}}
 
 " Files, backups and undo {{{
@@ -380,12 +433,6 @@ nmap <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 " Show undo tree
 nmap <silent> <leader>u :MundoToggle<CR>
 
-" Fuzzy find files
-nnoremap <silent> <Leader><space> :CtrlP<CR>
-let g:ctrlp_max_files=0
-let g:ctrlp_show_hidden=1
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](.git|.cabal-sandbox|.stack-work)$' }
-
 " }}}
 
 " Text, tab and indent related {{{
@@ -409,12 +456,11 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Copy and paste to os clipboard
-nmap <leader>y "*y
 vmap <leader>y "*y
-nmap <leader>d "*d
 vmap <leader>d "*d
-nmap <leader>p "*p
 vmap <leader>p "*p
+
+vnoremap <C-/> gcc
 
 " }}}
 
@@ -433,14 +479,15 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 nnoremap j gj
 nnoremap k gk
 
-noremap <c-h> <c-w>h
-noremap <c-k> <c-w>k
-noremap <c-j> <c-w>j
-noremap <c-l> <c-w>l
+" move & center
+nnoremap K kzz
+nnoremap J jzz
+nnoremap P Pzz
+nnoremap G Gzz
 
 " Disable highlight when <leader><cr> is pressed
 " but preserve cursor coloring
-nmap <silent> <leader><cr> :noh\|hi Cursor guibg=red<cr>
+" nmap <silent> <leader><cr> :noh\|hi Cursor guibg=red<cr>
 
 " Return to last edit position when opening files (You want this!)
 augroup last_edit
@@ -459,13 +506,13 @@ nmap <leader>sl :rightbelow vnew<CR>
 nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
-" Manually create key mappings (to avoid rebinding C-\)
-let g:tmux_navigator_no_mappings = 1
+" See :help window-resize
 
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" Sane vim split moving
+noremap <c-h> <c-w>h
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-l> <c-w>l
 
 " don't close buffers when you aren't displaying them
 set hidden
@@ -485,15 +532,9 @@ noremap <leader>b<space> :CtrlPBuffer<cr>
 
 " Neovim terminal configurations
 if has('nvim')
-" Use <Esc> to escape terminal insert mode
-tnoremap <Esc> <C-\><C-n>
-" Make terminal split moving behave like normal neovim
-tnoremap <c-h> <C-\><C-n><C-w>h
-tnoremap <c-j> <C-\><C-n><C-w>j
-tnoremap <c-k> <C-\><C-n><C-w>k
-tnoremap <c-l> <C-\><C-n><C-w>l
+  " Use <Esc> to escape terminal insert mode
+  tnoremap <Esc> <C-\><C-n>
 endif
-
 
 " }}}
 
@@ -564,7 +605,7 @@ nmap <silent> <Leader>rv <Plug>SetTmuxVars
 " NERDTree {{{
 
 " Close nerdtree after a file is selected
-let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen = 0
 
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
@@ -579,122 +620,8 @@ function! ToggleFindNerd()
 endfunction
 
 " If nerd tree is closed, find current file, if open, close it
-nmap <silent> <leader>f <ESC>:call ToggleFindNerd()<CR>
-nmap <silent> <leader>F <ESC>:NERDTreeToggle<CR>
-
-" }}}
-
-" Alignment {{{
-
-" Stop Align plugin from forcing its mappings on us
-let g:loaded_AlignMapsPlugin=1
-" Align on equal signs
-map <Leader>a= :Align =<CR>
-" Align on commas
-map <Leader>a, :Align ,<CR>
-" Align on pipes
-map <Leader>a<bar> :Align <bar><CR>
-" Prompt for align character
-map <leader>ap :Align
-" }}}
-
-" Tags {{{
-
-map <leader>tt :TagbarToggle<CR>
-
-set tags=tags;/
-set cst
-set csverb
-
-" }}}
-
-" Git {{{
-
-let g:extradite_width = 60
-" Hide messy Ggrep output and copen automatically
-function! NonintrusiveGitGrep(term)
-  execute "copen"
-  " Map 't' to open selected item in new tab
-  execute "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
-  execute "silent! Ggrep " . a:term
-  execute "redraw!"
-endfunction
-
-command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gg :copen<CR>:GGrep 
-nmap <leader>gl :Extradite!<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gb :Gblame<CR>
-
-function! CommittedFiles()
-  " Clear quickfix list
-  let qf_list = []
-  " Find files committed in HEAD
-  let git_output = system("git diff-tree --no-commit-id --name-only -r HEAD\n")
-  for committed_file in split(git_output, "\n")
-    let qf_item = {'filename': committed_file}
-    call add(qf_list, qf_item)
-  endfor
-  " Fill quickfix list with them
-  call setqflist(qf_list)
-endfunction
-
-" Show list of last-committed files
-nnoremap <silent> <leader>g? :call CommittedFiles()<CR>:copen<CR>
-
-" }}}
-
-" Completion {{{
-set completeopt+=longest
-
-" Use buffer words as default tab completion
-let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
-
-" }}}
-
-" Customization {{{
-execute 'source '. hvn_config_haskell
-if filereadable(hvn_config_post)
-  execute 'source '. hvn_config_post
-endif
-
-" }}}
-"
-"
-map <silent> <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen = 0
-" center
-nnoremap K kzz
-nnoremap J jzz
-nnoremap P Pzz
-nnoremap G Gzz
-
-" start and end of line
-noremap H ^
-noremap L $
-
-" commentary
-"
-vnoremap <C-/> gcc
-
-
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-
-"
-nnoremap <Space> <C-w>
-nnoremap <C-p> :Ag<SPACE><Enter>
+nmap <silent> <leader>n <ESC>:call ToggleFindNerd()<CR>
+nmap <silent> <leader>N <ESC>:NERDTreeToggle<CR>
 
 " you can add these colors to your .vimrc to help customizing
 let s:brown = "905532"
@@ -731,4 +658,172 @@ if exists("g:loaded_webdevicons")
 endif
 
 
-source ~/.vimrc
+
+" }}}
+
+" Alignment {{{
+
+" Stop Align plugin from forcing its mappings on us
+let g:loaded_AlignMapsPlugin=1
+" Align on equal signs
+map <Leader>a= :Align =<CR>
+" Align on commas
+map <Leader>a, :Align ,<CR>
+" Align on pipes
+map <Leader>a<bar> :Align <bar><CR>
+" Prompt for align character
+map <leader>ap :Align
+" }}}
+
+" Tags {{{
+
+map <leader>tt :TagbarToggle<CR>
+autocmd VimEnter * TagbarToggle
+
+
+" Sets how many lines of history VIM has to remember
+set history=700
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+if ! exists("mapleader")
+  let mapleader = ","
+endif
+
+if ! exists("g:mapleader")
+    let g:mapleader = ","
+endif
+
+" Leader key timeout
+set tm=2000
+
+" Allow the normal use of "," by pressing it twice
+noremap ,, ,
+
+" Use par for prettier line formatting
+set formatprg=par
+let $PARINIT = 'rTbgqR B=.,?_A_a Q=_s>|'
+
+" Kill the damned Ex mode.
+nnoremap Q <nop>
+
+" Make <c-h> work like <c-h> again (this is a problem with libterm)
+if has('nvim')
+  nnoremap <BS> <C-w>h
+endif
+
+" }}}
+
+" vim-plug {{{
+
+set nocompatible
+
+if has('nvim')
+  call plug#begin('~/.config/nvim/bundle')
+else
+  call plug#begin('~/.vim/bundle')
+endif
+
+" Support bundles
+" send commands to tmux
+Plug 'jgdavey/tslime.vim'
+" just to support async tasks
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Supertab to use <Tab> for all insert completion needs (:help ins-completion).
+Plug 'ervandew/supertab'
+" make
+Plug 'neomake/neomake'
+" better buffer delete
+Plug 'moll/vim-bbye'
+" display visualy indentation
+Plug 'nathanaelkane/vim-indent-guides'
+" Initialize python support
+Plug 'roxma/python-support.nvim'
+
+" Git
+Plug 'tpope/vim-fugitive'
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
+" Just run :Extradite
+Plug 'int3/vim-extradite'
+" Plug 'vim-scripts/gitignore'
+
+" Bars, panels, and files
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
+
+"fzfinder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" :
+
+set tags=tags;/
+set cst
+set csverb
+
+" }}}
+
+" Git {{{
+
+set diffopt+=vertical
+let g:extradite_width = 60
+" Hide messy Ggrep output and copen automatically
+function! NonintrusiveGitGrep(term)
+  execute "copen"
+  " Map 't' to open selected item in new tab
+  execute "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
+  execute "silent! Ggrep " . a:term
+  execute "redraw!"
+endfunction
+
+command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
+nmap <leader>gs :Gstatus<CR>
+" nmap <leader>gg :copen<CR>:GGrep 
+nmap <leader>gl :Extradite!<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gb :Gblame<CR>
+
+function! CommittedFiles()
+  " Clear quickfix list
+  let qf_list = []
+  " Find files committed in HEAD
+  let git_output = system("git diff-tree --no-commit-id --name-only -r HEAD\n")
+  for committed_file in split(git_output, "\n")
+    let qf_item = {'filename': committed_file}
+    call add(qf_list, qf_item)
+  endfor
+  " Fill quickfix list with them
+  call setqflist(qf_list)
+endfunction
+
+" Show list of last-committed files
+nnoremap <silent> <leader>g? :call CommittedFiles()<CR>:copen<CR>
+
+" }}}
+
+" Completion {{{
+set completeopt+=longest
+
+" Use buffer words as default tab completion
+let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
+
+" }}}
+
+" Customization {{{
+if filereadable(vimrc_conf_post)
+  execute 'source '. vimrc_conf_post
+endif
+" }}}
+
+

@@ -157,23 +157,33 @@ bindsym $mod+Shift+o exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Shift+e exec ./lock.sh
 
 # resize window (you can also use the mouse for that)
+#
+
+# in normal mode
+bindsym $mod+Mod1+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+j resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+l resize grow width 10 px or 10 ppt
+#
+
+# in resize mode
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-bindsym h resize shrink width 10 px or 10 ppt
-bindsym j resize grow height 10 px or 10 ppt
-bindsym k resize shrink height 10 px or 10 ppt
-bindsym l resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
-# same bindings, but for the arrow keys
-bindsym Left resize shrink width 10 px or 10 ppt
-bindsym Down resize grow height 10 px or 10 ppt
-bindsym Up resize shrink height 10 px or 10 ppt
-bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-# back to normal: Enter or Escape
-bindsym Return mode "default"
-bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -181,12 +191,20 @@ bindsym $mod+r mode "resize"
 # Bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+
+# colors from xorg
+set_from_resource $background background #424242
+set_from_resource $black color0 #888888
+set_from_resource $red color1 #8e36336
+set_from_resource $yellow color3 #122492
+set_from_resource $green color2 #000
+set_from_resource $white color15 #fff
 #colors:                border  backgr. text    indicator child_border
-#background #424242
-client.focused          #dfaf8f #dfaf8f #ffffff #424242 #dfaf8f
-client.focused_inactive #888888 #424242 #ffffff #424242 #888888
-client.unfocused        #888888 #424242 #ffffff #424242 #888888
-client.urgent           #8e3636 #8e3636 #ffffff #2b2b2r #8e3636
+#
+client.focused          $yellow $white $green $green $yellow
+client.focused_inactive $black $green $white $green $black
+client.unfocused        $black $green $white $green $black
+client.urgent           $red    $red   $white $green $red
 
 #
 # GUI Monitors and wallpapers
@@ -254,6 +272,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # Show the sup-mail scratchpad window, if any.
 #bindsym $mod+= [title="^Sup ::"] scratchpad show
+
+
 #
 #
 # i3-gaps
@@ -261,8 +281,8 @@ bindsym $mod+minus scratchpad show
 #smart_gaps on
 new_window none
 
-for_window [class="^.*"] border pixel 1
-for_window [class="__focused__"] border pixel 1
+for_window [class="^.*"] border pixel 2
+for_window [class="__focused__"] border pixel 2
 gaps inner 20
 gaps outer 0
 # Examples

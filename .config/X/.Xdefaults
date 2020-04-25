@@ -1,45 +1,86 @@
-!#
-!# Dark pastels
-!#
-!#
-*background: #2C2C2C
-*foreground: #DCDCCC
+!!
+!! Dark pastels
+!!
+! *background: #2C2C2C
+! *foreground: #DCDCCC
 
 ! black
-*.color0  : #4b4b4b
-! 3F3F3F
-*.color8  : #709080
-
-! red
-*.color1  : #DCA3A3
-*.color9  : #DCA3A3
-
-! green
-*.color2  : #60B48a
-*.color10 : #72D5A3
-
-! yellow
-*.color3  : #DFAF8F
-*.color11 : #F0DFAF
-
-! blue
-*.color4  : #9AB8D7
-*.color12 : #94BFF3
-
-! magenta
-*.color5  : #DC8CC3
-*.color13 : #EC93D3
-
-! cyan
-*.color6  : #8CD0D3
-*.color14 : #93E0E3
-
-! white
-*.color7  : #DCDCCC
-*.color15 : #FFFFFF
-
+! *.color0  : #4b4b4b
+! ! 3F3F3F
+! *.color8  : #709080
+!
+! ! red
+! *.color1  : #DCA3A3
+! *.color9  : #DCA3A3
+!
+! ! green
+! *.color2  : #60B48a
+! *.color10 : #72D5A3
+!
+! ! yellow
+! *.color3  : #DFAF8F
+! *.color11 : #F0DFAF
+!
+! ! blue
+! *.color4  : #9AB8D7
+! *.color12 : #94BFF3
+!
+! ! magenta
+! *.color5  : #DC8CC3
+! *.color13 : #EC93D3
+!
+! ! cyan
+! *.color6  : #8CD0D3
+! *.color14 : #93E0E3
+!
+! ! white
+! *.color7  : #DCDCCC
+! *.color15 : #FFFFFF
+!
 
 *.cursorColor:  #94BFF3
+
+!!
+!! Gruvbox
+!!
+
+! hard contrast: *background: #1d2021
+! *background: #282828
+! soft contrast: 
+*background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+! *color1:  #cc241d
+! *color9:  #fb4934
+*color1: #ff9b9b
+*color9: #e5a3a3
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+! folders
+*color12: #83a598
+! DarkMagenta + Magenta
+! *color5:  #b16286
+! *color13: #d3869b
+! *color5:  #db9cfb
+! *color13: #e4b5fb
+*.color5  : #DC8CB4
+*.color13 : #EC93D3
+!
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
 
 ! fonts
 Xft.dpi:                    96

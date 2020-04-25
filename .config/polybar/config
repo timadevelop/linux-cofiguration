@@ -8,27 +8,35 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #00000000
-background-alt = #00000000
-; #919191
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+white = ${xrdb:foreground:#dfdfdf}
 
-; ;background = ${xrdb:color0:#222}
-; background = #00000000
-; background-alt = #444
-; ;foreground = ${xrdb:color7:#222}
-; foreground = #dfdfdf
-; foreground-alt = #555
-; primary = #ffb52a
-; secondary = #e60053
-; alert = #bd2c40
+; red = #ff5555
+;
+red = #e60053
+green = #55aa55
+blue = #4b7bec
+cyan = #4bffdc
+purple = #9f78e1
+yellow = #ffb52a
 
+; red= ${xrdb:color1:#e60053}
+; green= ${xrdb:color2:#55aa55}
+; blue = ${xrdb:color12:#4b7bec}
+; cyan = ${xrdb:color6:#4bffdc}
+; purple = ${xrdb:color5:#9f78e1}
+; yellow = ${xrdb:color3:#ffb52a}
+;
+transparent = #00000000
+background = ${colors.transparent}
+background-alt = ${colors.transparent}
+
+foreground = ${colors.white}
+foreground-alt = ${colors.white}
+
+primary = ${colors.yellow}
+secondary = ${colors.red}
+alert = ${colors.red}
+success = ${colors.green}
 
 [modules/xmenu]
 menu-0 = item 1;command
@@ -54,10 +62,10 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = #f00
+line-color = ${colors.alert}
 
 border-size = 0
-border-color = #00000000
+border-color = ${colors.transparent}
 
 padding-left = 0
 padding-right = 2
@@ -79,7 +87,7 @@ modules-right = xbacklight pulseaudio xkeyboard wlan eth battery temperature dat
 tray-position = right
 tray-padding = 2
 tray-transparent = true
-;tray-background = #0063ff
+; tray-background = ${colors.success}
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -111,7 +119,7 @@ monitor             = ${env:MONITOR2}
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = 🛸 %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -119,12 +127,10 @@ blacklist-0 = num lock
 
 format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = #4b7bec
-;${colors.secondary}
+format-prefix-underline = ${colors.blue}
 
 label-layout = %layout%
-label-layout-underline = #4b7bec
-;${colors.secondary}
+label-layout-underline = ${colors.blue}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -170,7 +176,7 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+; label-mode-foreground = ${colors.black}
 label-mode-background = ${colors.primary}
 
 label-focused = 👋 %name%
@@ -211,11 +217,11 @@ label = BL
 
 bar-width = 10
 bar-indicator = |
-bar-indicator-foreground = #ff
+bar-indicator-foreground = ${colors.white}
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.purple}
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
@@ -230,7 +236,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.alert}
 label = %percentage%%
 
 
@@ -239,8 +245,8 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
+format-underline = ${colors.cyan}
+label = %percentage_used%
 
 [module/wlan]
 type = internal/network
@@ -248,7 +254,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal>    <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.purple}
 label-connected = %essid%
 
 format-disconnected =
@@ -269,7 +275,7 @@ type = internal/network
 interface = enp4s0
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.success}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -292,7 +298,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 ; format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #0a6cf5
+; format-underline = ${colors.blue}
 
 label = %date% %time%
 ;
@@ -314,8 +320,8 @@ sink = alsa_output.pci-0000_12_00.3.analog-stereo
 ; Default: true
 use-ui-max = true
 
-; format-volume-underline = #00b894
-format-muted-underline = #ff7675
+; format-volume-underline = ${colors.green}
+format-muted-underline = ${colors.alert}
 
 ; Interval for volume increase/decrease (in percent points)
 ; Default: 5
@@ -323,14 +329,9 @@ interval = 5
 
 
 format-volume = <label-volume> <bar-volume>
-<!-- label-volume = " " -->
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-volume-4 = 
-ramp-volume-5 = 
-ramp-volume-6 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 label-volume-foreground = ${root.foreground}
 
@@ -338,13 +339,9 @@ format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 
 bar-volume-width = 5
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.yellow}
+bar-volume-foreground-2 = ${colors.red}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -368,7 +365,7 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging>   <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.primary}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -395,7 +392,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.alert}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -403,9 +400,9 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]

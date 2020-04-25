@@ -97,9 +97,11 @@ ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=green
 ZSH_HIGHLIGHT_STYLES[line]=bold
-ZSH_HIGHLIGHT_STYLES[path]=fg=157,underline
+ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
 ZSH_HIGHLIGHT_STYLES[default]=fg=red,underline
 ZSH_HIGHLIGHT_STYLES[cursor]=bg=transparent
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

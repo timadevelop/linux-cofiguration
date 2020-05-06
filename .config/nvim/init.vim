@@ -102,6 +102,8 @@ Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
 " Initialize python support
 Plug 'roxma/python-support.nvim'
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -158,7 +160,19 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+" Colorscheme
+Plug 'vim-scripts/wombat256.vim'
+Plug 'morhetz/gruvbox'
 
+" Color codes highlight
+Plug 'chrisbra/Colorizer'
+
+" Icons
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Langs
+Plug 'sheerun/vim-polyglot'
 " Clang syntax hilighting
 Plug 'arakashic/chromatica.nvim'
 
@@ -174,25 +188,6 @@ Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 
-" Langs
-Plug 'sheerun/vim-polyglot'
-
-" frontend
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-" Plug 'mattn/emmet-vim'
-
-" Colorscheme
-Plug 'vim-scripts/wombat256.vim'
-Plug 'morhetz/gruvbox'
-
-" Color codes highlight
-Plug 'chrisbra/Colorizer'
-
-" Icons
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 "" Custom bundles
 
 " Example:
@@ -200,6 +195,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "   execute 'source '. user_plugins
 " endif
 
+
+set tags=tags;/
+set cst
+set csverb
 
 call plug#end()
 
@@ -717,62 +716,6 @@ endif
 
 " }}}
 
-" vim-plug {{{
-
-set nocompatible
-
-if has('nvim')
-  call plug#begin('~/.config/nvim/bundle')
-else
-  call plug#begin('~/.vim/bundle')
-endif
-
-" Support bundles
-" send commands to tmux
-Plug 'jgdavey/tslime.vim'
-" just to support async tasks
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Supertab to use <Tab> for all insert completion needs (:help ins-completion).
-Plug 'ervandew/supertab'
-" make
-Plug 'neomake/neomake'
-" better buffer delete
-Plug 'moll/vim-bbye'
-" display visualy indentation
-Plug 'nathanaelkane/vim-indent-guides'
-" Initialize python support
-Plug 'roxma/python-support.nvim'
-
-" Git
-Plug 'tpope/vim-fugitive'
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
-
-" Just run :Extradite
-Plug 'int3/vim-extradite'
-" Plug 'vim-scripts/gitignore'
-
-" Bars, panels, and files
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ }
-
-"fzfinder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-" :
-
-set tags=tags;/
-set cst
-set csverb
-
-" }}}
 
 " Git {{{
 

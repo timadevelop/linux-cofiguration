@@ -6,7 +6,7 @@ rofi.color-window: argb:c82d303b, #7c8389, #1d1f21
 rofi.color-normal: argb:31000000, #c4cbd4, argb:96404552, #204a7e, #f9f9f9
 rofi.color-active: argb:2c1d1f21, #3b76bb, argb:e44b5160, #3a5b83, #f9f9f9
 rofi.color-urgent: argb:2c1d1f21, #cc6666, argb:e54b5160, #a54242, #f9f9f9
-rofi.width: 100
+rofi.width: 50
 rofi.opacity: 50
 rofi.lines: 20
 rofi.columns: 1
@@ -31,3 +31,4 @@ rofi.hide-scrollbar: true
 /* !rofi.color-normal: argb:0002b36, #ffffff, argb:0002b36, argb:0002b36, #74b3e0 */
 /* !rofi.color-active: argb:0002b36, #268bd2, argb:0002b36, argb:0002b36, #ffffff */
 /* !rofi.color-urgent: argb:0002b36, #ffffff, argb:0002b36, argb:0002b36, #fdf6e3 */
+rofi.theme: /usr/share/rofi/themes/gruvbox-light-soft.rasi

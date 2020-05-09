@@ -143,8 +143,6 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+o exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec ./lock.sh
-bindsym $mod+Shift+t exec urxvt
 
 # resize window (you can also use the mouse for that)
 #
@@ -177,10 +175,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Bar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
 
 # colors from xorg
 set_from_resource $background background #424242

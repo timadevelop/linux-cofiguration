@@ -13,4 +13,6 @@ export SSH_AUTH_SOCK
 
 sxhkd &
 
+$HOME/.config/polybar/launch.sh &
+
 exec i3

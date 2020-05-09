@@ -1,0 +1,10 @@
+[Unit]
+Description=Picom Compositor
+Documentation=man:picom(1)
+
+[Service]
+ExecStart=/usr/bin/picom --config=%h/.config/picom/picom.conf
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+
+[Install]
+WantedBy=graphical.target

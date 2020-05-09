@@ -1,0 +1,59 @@
+XF86LaunchB
+	xdotool selectwindow | xsel -bi
+
+XF86AudioRaiseVolume
+  pactl set-sink-volume $PACTL_SINK +3% #increase sound volume
+XF86AudioLowerVolume
+  pactl set-sink-volume $PACTL_SINK -3% #decrease sound volume
+XF86AudioMute
+  pactl set-sink-mute $PACTL_SINK toggle # mute sound
+
+# Sreen brightness controls
+XF86MonBrightnessUp
+  $HOME/.scripts/brightness -inc 10 # increase screen brightness
+XF86MonBrightnessDown
+  $HOME/.scripts/brightness -dec 10 # decrease screen brightness
+shift+XF86MonBrightnessUp
+  $HOME/.scripts/brightness -inc 1
+shift+XF86MonBrightnessDown
+  $HOME/.scripts/brightness -dec 1
+
+# Touchpad controls
+XF86TouchpadToggle
+  $HOME/.scripts/touchpad_toogle.sh
+
+# Media player controls
+XF86AudioPlay
+  playerctl play
+XF86AudioPause
+  playerctl pause
+XF86AudioNext
+  playerctl next
+XF86AudioPrev
+  playerctl previous 
+
+
+
+
+# start a terminal (main session)
+super+Return
+  urxvt -e tmux new-session -A -s main
+
+# new session
+super+shift+Return
+  urxvt -e tmux new-session
+
+super+p
+  flameshot gui
+
+
+# start dmenu (a program launcher)
+
+#bindsym $mod+d exec dmenu_run
+super+d
+  rofi -show run
+super+w
+  rofi -show window
+
+#{_,shift + ,super + }XF86MonBrightness{Down,Up}
+#	bright {-1,-10,min,+1,+10,max}

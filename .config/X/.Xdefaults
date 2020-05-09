@@ -92,7 +92,7 @@ Xft.hintstyle:              hintslight
 !
 ! URXVT settings
 !
-URxvt*font: xft:Hack\ Nerd\ Font:size=9:antialias=true, \
+*font: xft:Hack\ Nerd\ Font:size=9:antialias=true, \
             xft:Hack\ Nerd\ Font\ Mono, \
             xft:Siji:pixelsize=10
 

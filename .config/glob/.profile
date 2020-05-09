@@ -13,7 +13,7 @@ test -z "$PROFILEREAD" && . /etc/profile || true
 export LANG=en_US.UTF-8
 export LC_MESSAGES="C"
 
-
+export XDG_CONFIG_HOME="$HOME/.config"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -22,6 +22,12 @@ export LC_MESSAGES="C"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# setup layouts
+setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle
+# xmodmap -e \"clear lock\";xmodmap -e \"keysym Caps_Lock = Escape\";
+
+export PACTL_SINK=$(pactl list short sinks | grep analog | cut -f1)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

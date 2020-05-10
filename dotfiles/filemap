@@ -1,0 +1,62 @@
+#
+# Config files filemap
+#
+
+
+#
+# Home dir glob dotfiles
+#
+~/.profile glob/
+~/.bash_profile glob/
+~/.nvidia-settings-rc glob/
+
+~/.i18n glob/
+
+~/.xinitrc glob/
+~/.Xdefaults glob/
+
+
+~/.tmux/.tmux.conf glob/.tmux/
+~/.tmux/.tmux.conf.local glob/.tmux/
+
+~/.zshrc glob/
+
+~/.tldrrc glob/
+
+~/.i3status.conf glob/
+
+~/.gitconfig glob/
+
+~/.fzf.bash glob/
+~/.fzf.zsh glob/
+
+~/.basrc glob/
+
+~/.vimrc glob/
+
+#
+# Config
+#
+~/.config/htop/ .config/htop/
+~/.config/i3/ .config/i3/
+~/.config/picom/ .config/picom/
+~/.config/nvim/init.vim .config/nvim/
+~/.config/polybar/config .config/polybar/
+~/.config/polybar/launch.sh .config/polybar/
+~/.config/ranger/rc.conf .config/ranger/
+~/.config/rofi/config .config/rofi/
+~/.config/sxhkd/sxhkdrc .config/sxhkd/
+~/.config/systemd/ .config/systemd/
+
+~/.scripts/ .scripts/
+
+
+#
+# Root
+#
+/etc/X11/xorg.conf.d/ root/X11/xorg.conf.d/
+
+/etc/X11/10-nvidia-drm-outputclass.conf root/X11/
+
+/etc/pacman.conf root/etc/
+

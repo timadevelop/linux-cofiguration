@@ -1,30 +1,44 @@
 # Linux configuration files
 
-![Result](./result.png)
-## CHANGELOG
+![Result](./result_2020-05-10.png)
+
+
+
+## List
 - `arch`
 - `urxvt`
-- `neovim`
-- `fuzzy finder`: [fzf](https://github.com/junegunn/fzf)
-- ~~`konsole` with `dark-pastels`~~
-- ~~`vim` - use [haskell-vim-now](https://github.com/begriffs/haskell-vim-now) + additional keymaps~~
-- `tldr`-pages: [bash](https://github.com/pepa65/tldr-bash-client)
+- `tmux`
+- `neovim` + `gruvbox`
+- `zsh`
 - `geometry` theme for `zsh` : [theme repo](https://github.com/geometry-zsh/geometry)
 - `zsh-async` : [repo](https://github.com/mafredri/zsh-async)
-- `zsh` instead of `bash`
-- ~~`userChrome` for hidden `firefox` bar~~
-- ~~`mozilla` `vimperator` : [official website](http://vimperator.org/)~~
+- `fuzzy finder`: [fzf](https://github.com/junegunn/fzf)
+- `tldr`-pages: [bash](https://github.com/pepa65/tldr-bash-client)
 - `rofi` : [git repo](https://github.com/DaveDavenport/rofi/)
 - `i3lock-fancy` : [repo](https://github.com/meskarune/i3lock-fancy)
 - `i3-gaps` / `i3wm` : [website](https://i3wm.org/)
+- `polybar`
+- `ranger` & `thunar` for file management
+- `sxhkd` for wm independent keybindings
+- `nitrogen` for wallpapers
+- `zathura` for pdfs
+- `yay` for AUR packages
+- `flameshot` for screenshots
+- See [packages.list](./packages.list) (`pacman -Qqe`)
 - ~~bluetooth.service for `asus t300 chi` - [keyboard settings](https://github.com/timadevelop/asusT300chi_configs/tree/master/keyboard)~~
+- ~~`konsole` with `dark-pastels`~~
+- ~~`vim` - use [haskell-vim-now](https://github.com/begriffs/haskell-vim-now) + additional keymaps~~
+- ~~`userChrome` for hidden `firefox` bar~~
+- ~~`mozilla` `vimperator` : [official website](http://vimperator.org/)~~
 
 
-## Dep
-- `compton` for transparency
+## Deps
+- `picom` for transparency
 - `the_silver_searcher` for ag
-- `i3-gaps`
-- `noto-fonts-emoji`
+- `noto-fonts-emoji`, `hack nerd font`, `siji`
+- `light` or `xbacklight` for brightess controll 
+
+
 
 
 ## Nvidia optimus
@@ -44,7 +58,7 @@ additional: install `primus` and see `primusrun-custom.sh`
 
 nvidia settings: `optirun nvidia-settings -c :8`
 
-### Check nvidia
+#### Check nvidia
 `lsmod | grep bb` should show bbswitch
 
 `lsmod | grep nouveau` should show nothing

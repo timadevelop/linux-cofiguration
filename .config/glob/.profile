@@ -23,10 +23,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# setup layouts
-setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle
-# xmodmap -e \"clear lock\";xmodmap -e \"keysym Caps_Lock = Escape\";
-
 export PACTL_SINK=$(pactl list short sinks | grep analog | cut -f1)
 
 # Preferred editor for local and remote sessions

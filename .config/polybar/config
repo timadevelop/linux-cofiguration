@@ -79,7 +79,8 @@ font-2 = "Noto Color Emoji:scale=11"
 font-3 = FontAwesome:pixelsize=14;1
 font-4 = Siji:pixelsize=10;1
 
-modules-left = i3
+modules-left = i3 
+; ewmh
 modules-center = xwindow
 modules-right = xbacklight pulseaudio xkeyboard wlan eth battery temperature date powermenu
 ;network filesystem volume wlan eth battery temperature pusleaudio alsa date powermenu
@@ -92,7 +93,7 @@ tray-transparent = true
 ;wm-restack = bspwm
 wm-restack = i3
 
-override-redirect = true
+; override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -165,6 +166,90 @@ label-urgent-padding = 2
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
+
+[module/ewmh]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = false
+
+;;; Additional
+
+; icon-[0-9]+ = <desktop-name>;<icon>
+; NOTE: The desktop name needs to match the name configured by the WM
+; You can get a list of the defined desktops using:
+; $ xprop -root _NET_DESKTOP_NAMES
+; Note: Neither <desktop-name> nor <icon> can contain a semicolon (;)
+icon-0 = 1;
+icon-1 = 1;
+icon-2 = 2;
+icon-3 = 3;
+icon-4 = 4;
+icon-default =
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+format = <label-state>
+
+; Available tokens:
+;   %name%
+; Default: %name%
+label-monitor = %name%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active = 👋 %icon% %name%
+label-active-background = ${module/bspwm.label-focused-background}
+label-active-padding = ${module/bspwm.label-focused-padding}
+label-active-underline = ${module/bspwm.label-focused-underline}
+
+; (unreleased)
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-occupied = %icon% %name%
+label-occupied-underline = #555555
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = 😱 %name%!
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-empty = %name%
+label-empty-padding = 2
+;
+
+;;;; //// ewmh
+
 
 [module/i3]
 type = internal/i3

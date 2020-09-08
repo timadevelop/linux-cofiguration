@@ -767,6 +767,8 @@ let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
 if filereadable(vimrc_conf_post)
   execute 'source '. vimrc_conf_post
 endif
-" }}}
 
+command! -nargs=0 Writesudo w !sudo tee "%" > /dev/null
+
+" }}}
 

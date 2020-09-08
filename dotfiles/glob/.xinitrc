@@ -5,14 +5,8 @@ dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-$HOME/.scripts/configure_monitors.sh
-$HOME/.scripts/restart_custom_services.sh
-
-
-setxkbmap -model pc104 -layout us,ru -variant , -option grp:alt_shift_toggle
-
-sxhkd &
-
-$HOME/.config/polybar/launch.sh &
+sleep 1s && $HOME/.scripts/configure_monitors.sh &&\
+  $HOME/.scripts/init_keyboard_layouts.sh &&\
+  $HOME/.scripts/restart_custom_services.sh &
 
 exec i3

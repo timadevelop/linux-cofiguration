@@ -23,7 +23,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-export PACTL_SINK=$(pactl list short sinks | grep analog | cut -f1)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

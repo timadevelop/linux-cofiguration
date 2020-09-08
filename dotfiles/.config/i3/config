@@ -195,7 +195,7 @@ client.urgent           $red    $red   $white $green $red
 #
 
 assign [class="urxvt"] $ws01
-assign [class="chrome"] $ws02
+# assign [class="chrome"] $ws02
 assign [class="Telegram"] $ws07
 assign [class="Slack"] $ws06
 assign [class="Mailspring"] $ws08

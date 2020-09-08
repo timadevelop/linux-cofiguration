@@ -1,0 +1,11 @@
+[Unit]
+Description=polybar
+Documentation=man:polybar(1)
+
+[Service]
+Type=forking
+ExecStart=%h/.config/polybar/launch.sh
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=sxhkd
+Documentation=man:sxhkd(1)
+
+[Service]
+ExecStart=%h/.scripts/run_sxhkd.sh
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+
+[Install]
+WantedBy=graphical.target

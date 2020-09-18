@@ -76,6 +76,9 @@ set formatoptions+=t
 " Kill the damned Ex mode.
 nnoremap Q <nop>
 
+" Exit vim
+nnoremap <C-q> :q<CR>
+
 " No old-time vi
 set nocompatible
 

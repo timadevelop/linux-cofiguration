@@ -28,7 +28,6 @@
 ~/.gitconfig glob/
 
 ~/.fzf.bash glob/
-~/.fzf.zsh glob/
 
 ~/.basrc glob/
 
@@ -47,6 +46,7 @@
 ~/.config/rofi/config .config/rofi/
 ~/.config/sxhkd/sxhkdrc .config/sxhkd/
 ~/.config/systemd/ .config/systemd/
+~/.config/zsh/ .config/zsh/
 
 ~/.scripts/ .scripts/
 

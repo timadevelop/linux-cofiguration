@@ -18,20 +18,21 @@ let vimrc_conf_post = expand(resolve(vimrc_dir . "/.vimrc"))
 " }}}
 
 " General {{{
+" Folding: use z[a, o, c, R, M]
 " Use indentation for folds
 set foldmethod=marker
 set foldnestmax=5
 set foldlevelstart=99
 set foldcolumn=0
 
-nmap zt :call <SID>ToggleFold()<CR>
-function! s:ToggleFold()
-    if &foldmethod == 'marker'
-        let &l:foldmethod = 'indent'
-    else
-        let &l:foldmethod = 'marker'
-    endif
-    echo 'foldmethod is now ' . &l:foldmethod
+nmap zt :call <SID>ToggleFoldMethod()<CR>
+function! s:ToggleFoldMethod()
+  if &foldmethod == 'marker'
+    let &l:foldmethod = 'indent'
+  else
+    let &l:foldmethod = 'marker'
+  endif
+  echo 'foldmethod is now ' . &l:foldmethod
 endfunction
 
 augroup vimrcFold
@@ -54,8 +55,10 @@ if ! exists("mapleader")
 endif
 
 if ! exists("g:mapleader")
-    let g:mapleader = ","
+  let g:mapleader = ","
 endif
+
+:nnoremap <leader>w <C-w>
 
 " Leader key timeout
 set tm=2000
@@ -67,8 +70,14 @@ noremap ,, ,
 set formatprg=par
 let $PARINIT = 'rTbgqR B=.,?_A_a Q=_s>|'
 
+" Autoformat while typing
+set formatoptions+=t
+
 " Kill the damned Ex mode.
 nnoremap Q <nop>
+
+" No old-time vi
+set nocompatible
 
 " Make <c-h> work like <c-h> again (this is a problem with libterm)
 if has('nvim')
@@ -78,8 +87,6 @@ endif
 " }}}
 
 " vim-plug {{{
-
-set nocompatible
 
 if has('nvim')
   call plug#begin('~/.config/nvim/bundle')
@@ -148,16 +155,13 @@ map \\ <Plug>(easymotion-s)
 " Sane paste in insert mode
 Plug 'ConradIrwin/vim-bracketed-paste'
 
-" 
+"
 Plug 'jiangmiao/auto-pairs'
 
-" autocomplite
+" autocomplete
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  " See help :CocInstall
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 " Colorscheme
@@ -175,6 +179,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'sheerun/vim-polyglot'
 " Clang syntax hilighting
 Plug 'arakashic/chromatica.nvim'
+
+" XML
+Plug 'othree/xml.vim'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -217,42 +224,43 @@ let g:deoplete#enable_at_startup = 1
 
 " Fzf config {{{
 " install the_silver_searcher on your system
-  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-  nnoremap <silent> <leader><space> :GFiles<CR>
-  nnoremap <silent> <C-p> :Files<CR>
-  nnoremap <silent> <leader>fb :Buffers<CR>
-  nnoremap <silent> <leader>fw :Windows<CR>
-  nnoremap <silent> <leader>fl :BLines<CR>
-  nnoremap <silent> <leader>ft :BTags<CR>
-  nnoremap <silent> <leader>fT :Tags<CR>
-  nnoremap <silent> <leader>fh :History<CR>
-  nnoremap <silent> <leader>/ :Ag<CR>
+nnoremap <silent> <leader><space> :GFiles<CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fw :Windows<CR>
+nnoremap <silent> <leader>fl :BLines<CR>
+nnoremap <silent> <leader>ft :BTags<CR>
+nnoremap <silent> <leader>fT :Tags<CR>
+nnoremap <silent> <leader>fh :History<CR>
+" Files Content search
+nnoremap <silent> <leader>/ :Ag<CR>
 
-  vnoremap <silent> <leader>f* :call SearchVisualSelectionWithAg()<CR>
-  nnoremap <silent> <leader>fc :Commits<CR>
-  nnoremap <silent> <leader>fs :Filetypes<CR>
+vnoremap <silent> <leader>f* :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>fc :Commits<CR>
+nnoremap <silent> <leader>fs :Filetypes<CR>
 
-  imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-  imap <C-x><C-l> <plug>(fzf-complete-line)
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 
-  function! SearchVisualSelectionWithAg() range
-    let old_reg = getreg('"')
-    let old_regtype = getregtype('"')
-    let old_clipboard = &clipboard
-    set clipboard&
-    normal! ""gvy
-    let selection = getreg('"')
-    call setreg('"', old_reg, old_regtype)
-    let &clipboard = old_clipboard
-    execute 'Ag' selection
-  endfunction
+function! SearchVisualSelectionWithAg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Ag' selection
+endfunction
 
-  function! SearchWithAgInDirectory(...)
-    call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
-  endfunction
-  command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
+function! SearchWithAgInDirectory(...)
+  call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+endfunction
+command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
 " }}}
 
 " VIM user interface {{{
@@ -273,7 +281,7 @@ set number relativenumber
 set list
 " But only interesting whitespace
 if &listchars ==# 'eol:$'
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
 " Height of the command bar
@@ -311,10 +319,10 @@ set noerrorbells
 set vb t_vb=
 
 if &term =~ '256color'
-" disable Background Color Erase (BCE) so that color schemes
-" render properly when inside 256-color tmux and GNU screen.
-" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-set t_ut=
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
 endif
 
 " Force redraw
@@ -331,28 +339,28 @@ set mouse=
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 " }}}
 
 " Colors and Fonts {{{
 
 try
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  " For Neovim 0.1.3 and 0.1.4
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
+  " Or if you have Neovim >= 0.1.5
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 
-" Theme
-syntax enable
-set background=dark    " Setting dark mode
-let g:gruvbox_contrast_dark = 'soft'
-" colorscheme wombat256mod "gruvbox
-colorscheme gruvbox
+  " Theme
+  syntax enable
+  set background=dark    " Setting dark mode
+  let g:gruvbox_contrast_dark = 'soft'
+  " colorscheme wombat256mod "gruvbox
+  colorscheme gruvbox
 
 
 catch
@@ -385,9 +393,9 @@ set guicursor+=n-v-c:blinkon0
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-set guioptions-=T
-set guioptions-=e
-set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions-=e
+  set guitablabel=%M\ %t
 endif
 
 
@@ -418,12 +426,12 @@ set undofile
 
 " Source the vimrc file after saving it
 augroup sourcing
-autocmd!
-if has('nvim')
-  autocmd bufwritepost init.vim source $MYVIMRC
-else
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+  autocmd!
+  if has('nvim')
+    autocmd bufwritepost init.vim source $MYVIMRC
+  else
+    autocmd bufwritepost .vimrc source $MYVIMRC
+  endif
 augroup END
 
 " Open file prompt with current path
@@ -490,11 +498,11 @@ nnoremap G Gzz
 
 " Return to last edit position when opening files (You want this!)
 augroup last_edit
-autocmd!
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+  autocmd!
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 augroup END
 " Remember info about open buffers on close
 set viminfo^=%
@@ -505,13 +513,20 @@ nmap <leader>sl :rightbelow vnew<CR>
 nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
-" See :help window-resize
-
 " Sane vim split moving
 noremap <c-h> <c-w>h
 noremap <c-k> <c-w>k
 noremap <c-j> <c-w>j
 noremap <c-l> <c-w>l
+
+" Sane vim resizing
+" See :help window-resize
+nnoremap = <c-w>=
+nnoremap _ <c-w>_
+nnoremap <S-H> <c-w><lt>
+nnoremap <S-L> <c-w>>
+nnoremap <S-J> <c-w>-
+nnoremap <S-K> <c-w>+
 
 " don't close buffers when you aren't displaying them
 set hidden
@@ -525,9 +540,6 @@ nnoremap <leader>bo <c-w>o
 
 " delete buffer without closing pane
 noremap <leader>bd :Bd<cr>
-
-" fuzzy find buffers
-noremap <leader>b<space> :CtrlPBuffer<cr>
 
 " Neovim terminal configurations
 if has('nvim')
@@ -548,9 +560,9 @@ set laststatus=2
 
 " Utility function to delete trailing white space
 func! DeleteTrailingWS()
-exe "normal mz"
-%s/\s\+$//ge
-exe "normal `z"
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
 endfunc
 
 " }}}
@@ -565,30 +577,30 @@ map <leader>ss :setlocal spell!<cr>
 " Helper functions {{{
 
 function! CmdLine(str)
-exe "menu Foo.Bar :" . a:str
-emenu Foo.Bar
-unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 function! VisualSelection(direction, extra_filter) range
-let l:saved_reg = @"
-execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-let l:pattern = escape(@", '\\/.*$^~[]')
-let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-if a:direction == 'b'
-  execute "normal ?" . l:pattern . "^M"
-elseif a:direction == 'gv'
-  call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-elseif a:direction == 'replace'
-  call CmdLine("%s" . '/'. l:pattern . '/')
-elseif a:direction == 'f'
-  execute "normal /" . l:pattern . "^M"
-endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
 
-let @/ = l:pattern
-let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 " }}}
@@ -679,33 +691,6 @@ map <leader>ap :Align
 map <leader>tt :TagbarToggle<CR>
 autocmd VimEnter * TagbarToggle
 
-
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-if ! exists("mapleader")
-  let mapleader = ","
-endif
-
-if ! exists("g:mapleader")
-    let g:mapleader = ","
-endif
-
-" Leader key timeout
-set tm=2000
-
-" Allow the normal use of "," by pressing it twice
-noremap ,, ,
-
-" Use par for prettier line formatting
-set formatprg=par
-let $PARINIT = 'rTbgqR B=.,?_A_a Q=_s>|'
-
 " Kill the damned Ex mode.
 nnoremap Q <nop>
 
@@ -732,7 +717,7 @@ endfunction
 
 command! -nargs=1 GGrep call NonintrusiveGitGrep(<q-args>)
 nmap <leader>gs :Gstatus<CR>
-" nmap <leader>gg :copen<CR>:GGrep 
+" nmap <leader>gg :copen<CR>:GGrep
 nmap <leader>gl :Extradite!<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>

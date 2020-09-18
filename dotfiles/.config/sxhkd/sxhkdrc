@@ -37,11 +37,11 @@ XF86AudioPrev
 
 # start a terminal (main session)
 super+Return
-  urxvt -e tmux new-session
+  urxvt -e tmux new-session -A -s main
 
 # new session
 super+shift+Return
-  urxvt -e tmux new-session -A -s main
+  urxvt -e tmux new-session
 
 super+p
   flameshot gui

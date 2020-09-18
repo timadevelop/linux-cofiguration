@@ -21,7 +21,6 @@ plugins=(
 
 ZSH_THEME_RANDOM_CANDIDATES=(
   "geometry/geometry"
-  "spaceship"
   "pi"
 )
 
